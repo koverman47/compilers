@@ -28,12 +28,12 @@ func_declarations -> func_decl func_declarations | empty
 func_decl         -> FUNCTION any_type id (param_decl_list) BEGIN func_body END
 func_body         -> decl stmt_list 
 
-/* Statement List */
+/* Statement List * - Carsen Ball/
 stmt_list         -> stmt stmt_list | empty
 stmt              -> base_stmt | if_stmt | while_stmt
 base_stmt         -> assign_stmt | read_stmt | write_stmt | return_stmt
 
-/* Basic Statements */
+/* Basic Statements * - Carsen Ball/
 assign_stmt       -> assign_expr ;
 assign_expr       -> id := expr
 read_stmt         -> READ ( id_list );
@@ -53,13 +53,13 @@ primary           -> ( expr ) | id | INTLITERAL | FLOATLITERAL
 addop             -> + | -
 mulop             -> * | /
 
-/* Complex Statements and Condition */ 
+/* Complex Statements and Condition * Carsen Ball/ 
 if_stmt           -> IF ( cond ) decl stmt_list else_part ENDIF
 else_part         -> ELSE decl stmt_list | empty
 cond              -> expr compop expr
 compop            -> < | > | = | != | <= | >=
 
-/* While statements */
+/* While statements * Carsen Ball/
 while_stmt       -> WHILE ( cond ) decl stmt_list ENDWHILE
 
 ------
