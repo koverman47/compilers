@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 from antlr4 import *
 from TinyLexer import TinyLexer
@@ -10,7 +12,7 @@ def main(argv):
     stream = CommonTokenStream(lexer)
     parser = TinyParser(stream)
     tree = parser.start()
-    printer = KeyPrinter()
+    #printer = KeyPrinter()
     walker = ParseTreeWalker()
     print(tree.toStringTree(recog=parser))
 

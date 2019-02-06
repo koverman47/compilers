@@ -1,3 +1,7 @@
 *.pyc
 
 .idea/
+*.out
+*.micro
+*.interp
+*.tokens
