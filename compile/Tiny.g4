@@ -1,19 +1,18 @@
 grammar Tiny;
 
-/* Program **/
-program           : 'PROGRAM' ID 'BEGIN' pgm_body 'END';
-ID                : IDENTIFIER;
+/* Program */
+program           : KEYWORD ID KEYWORD pgm_body KEYWORD;
 pgm_body          : decl func_declarations;
 decl		      : string_decl decl | var_decl decl | ;
 
 /* Global String Declaration */
-string_decl       : 'STRING' ID ':=' STR ';' ;
+string_decl       : KEYWORD ID ':=' STR ';' ;
 STR               : STRINGLITERAL;
 
 /* Variable Declaration */
 var_decl          : var_type id_list ';' ;
-var_type	      : 'FLOAT' | 'INT';
-any_type          : var_type | 'VOID';
+var_type	      : KEYWORD | KEYWORD;
+any_type          : var_type | KEYWORD;
 id_list           : ID id_tail;
 id_tail           : ',' ID id_tail | ;
 
@@ -24,7 +23,7 @@ param_decl_tail   : ',' param_decl param_decl_tail | ;
 
 /* Function Declarations */
 func_declarations : func_decl func_declarations | ;
-func_decl         : 'FUNCTION' any_type ID param_decl_list 'BEGIN' func_body 'END';
+func_decl         : KEYWORD any_type ID param_decl_list KEYWORD func_body KEYWORD;
 func_body         : decl stmt_list;
 
 /* Statement List */
@@ -35,9 +34,9 @@ base_stmt         : assign_stmt | read_stmt | write_stmt | return_stmt;
 /* Basic Statements */
 assign_stmt       : assign_expr ';' ;
 assign_expr       : ID ':=' expr;
-read_stmt         : 'READ' '(' id_list ')' ';' ;
-write_stmt        : 'WRITE' '(' id_list ')' ';' ;
-return_stmt       : 'RETURN' expr ';' ;
+read_stmt         : KEYWORD '(' id_list ')' ';' ;
+write_stmt        : KEYWORD '(' id_list ')' ';' ;
+return_stmt       : KEYWORD expr ';' ;
 
 /* Expressions */
 expr              : expr_prefix factor;
@@ -53,14 +52,14 @@ addop             : '+' | '-';
 mulop             : '*' | '/';
 
 /* Complex Statements and Condition */
-if_stmt           : 'IF' '(' cond ')' decl stmt_list else_part 'ENDIF';
-else_part         : 'ELSE' decl stmt_list | ;
+if_stmt           : KEYWORD '(' cond ')' decl stmt_list else_part KEYWORD;
+else_part         : KEYWORD decl stmt_list | ;
 cond              : expr compop expr;
 compop            : '<' | '>' | '=' | '!=' | '<=' | '>=';
 
 
 /* While statements */
-while_stmt       : 'WHILE' '(' cond ')' decl stmt_list 'ENDWHILE';
+while_stmt       : KEYWORD '(' cond ')' decl stmt_list KEYWORD;
 
 start: .*? EOF;
 
@@ -93,7 +92,8 @@ KEYWORD: 'PROGRAM'
     |'STRING'
     |'FLOAT';
 
-IDENTIFIER: [A-Za-z]+[0-9]* ;
+ID				  : [A-Za-z]+[0-9]* ;
+
 
 OPERATOR:':='
     |'+'
