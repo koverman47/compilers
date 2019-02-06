@@ -8,7 +8,7 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\32")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n")
         buf.write("\u012e\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
@@ -36,41 +36,40 @@ def serializedATN():
         buf.write("%\3%\5%\u0116\n%\3&\3&\3&\3&\3\'\3\'\3(\3(\3(\3(\3(\3")
         buf.write("(\3(\3(\3)\7)\u0127\n)\f)\16)\u012a\13)\3)\3)\3)\3\u0128")
         buf.write("\4\62\66*\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&")
-        buf.write("(*,.\60\62\64\668:<>@BDFHJLNP\2\6\3\2\30\30\3\2\b\t\3")
-        buf.write("\2\n\13\3\2\f\21\2\u011d\2R\3\2\2\2\4X\3\2\2\2\6b\3\2")
-        buf.write("\2\2\bd\3\2\2\2\nj\3\2\2\2\fn\3\2\2\2\16r\3\2\2\2\20t")
-        buf.write("\3\2\2\2\22{\3\2\2\2\24\u0085\3\2\2\2\26\u0087\3\2\2\2")
-        buf.write("\30\u008f\3\2\2\2\32\u0095\3\2\2\2\34\u0097\3\2\2\2\36")
-        buf.write("\u009f\3\2\2\2 \u00a6\3\2\2\2\"\u00ab\3\2\2\2$\u00b1\3")
-        buf.write("\2\2\2&\u00b3\3\2\2\2(\u00b6\3\2\2\2*\u00ba\3\2\2\2,\u00c0")
-        buf.write("\3\2\2\2.\u00c6\3\2\2\2\60\u00ca\3\2\2\2\62\u00cd\3\2")
-        buf.write("\2\2\64\u00d7\3\2\2\2\66\u00da\3\2\2\28\u00e6\3\2\2\2")
-        buf.write(":\u00e8\3\2\2\2<\u00f1\3\2\2\2>\u00f8\3\2\2\2@\u0101\3")
-        buf.write("\2\2\2B\u0103\3\2\2\2D\u0105\3\2\2\2F\u0107\3\2\2\2H\u0115")
-        buf.write("\3\2\2\2J\u0117\3\2\2\2L\u011b\3\2\2\2N\u011d\3\2\2\2")
-        buf.write("P\u0128\3\2\2\2RS\7\30\2\2ST\7\31\2\2TU\7\30\2\2UV\5\4")
-        buf.write("\3\2VW\7\30\2\2W\3\3\2\2\2XY\5\6\4\2YZ\5\32\16\2Z\5\3")
-        buf.write("\2\2\2[\\\5\b\5\2\\]\5\6\4\2]c\3\2\2\2^_\5\n\6\2_`\5\6")
-        buf.write("\4\2`c\3\2\2\2ac\3\2\2\2b[\3\2\2\2b^\3\2\2\2ba\3\2\2\2")
-        buf.write("c\7\3\2\2\2de\7\30\2\2ef\7\31\2\2fg\7\3\2\2gh\7\22\2\2")
-        buf.write("hi\7\4\2\2i\t\3\2\2\2jk\5\f\7\2kl\5\20\t\2lm\7\4\2\2m")
-        buf.write("\13\3\2\2\2no\t\2\2\2o\r\3\2\2\2ps\5\f\7\2qs\7\30\2\2")
-        buf.write("rp\3\2\2\2rq\3\2\2\2s\17\3\2\2\2tu\7\31\2\2uv\5\22\n\2")
-        buf.write("v\21\3\2\2\2wx\7\5\2\2xy\7\31\2\2y|\5\22\n\2z|\3\2\2\2")
-        buf.write("{w\3\2\2\2{z\3\2\2\2|\23\3\2\2\2}~\7\6\2\2~\177\5\26\f")
-        buf.write("\2\177\u0080\5\30\r\2\u0080\u0081\7\7\2\2\u0081\u0086")
-        buf.write("\3\2\2\2\u0082\u0083\7\6\2\2\u0083\u0086\7\7\2\2\u0084")
-        buf.write("\u0086\3\2\2\2\u0085}\3\2\2\2\u0085\u0082\3\2\2\2\u0085")
-        buf.write("\u0084\3\2\2\2\u0086\25\3\2\2\2\u0087\u0088\5\f\7\2\u0088")
-        buf.write("\u0089\7\31\2\2\u0089\27\3\2\2\2\u008a\u008b\7\5\2\2\u008b")
-        buf.write("\u008c\5\26\f\2\u008c\u008d\5\30\r\2\u008d\u0090\3\2\2")
-        buf.write("\2\u008e\u0090\3\2\2\2\u008f\u008a\3\2\2\2\u008f\u008e")
-        buf.write("\3\2\2\2\u0090\31\3\2\2\2\u0091\u0092\5\34\17\2\u0092")
-        buf.write("\u0093\5\32\16\2\u0093\u0096\3\2\2\2\u0094\u0096\3\2\2")
-        buf.write("\2\u0095\u0091\3\2\2\2\u0095\u0094\3\2\2\2\u0096\33\3")
-        buf.write("\2\2\2\u0097\u0098\7\30\2\2\u0098\u0099\5\16\b\2\u0099")
-        buf.write("\u009a\7\31\2\2\u009a\u009b\5\24\13\2\u009b\u009c\7\30")
-        buf.write("\2\2\u009c\u009d\5\36\20\2\u009d\u009e\7\30\2\2\u009e")
+        buf.write("(*,.\60\62\64\668:<>@BDFHJLNP\2\3\3\2\b\b\2\u011d\2R\3")
+        buf.write("\2\2\2\4X\3\2\2\2\6b\3\2\2\2\bd\3\2\2\2\nj\3\2\2\2\fn")
+        buf.write("\3\2\2\2\16r\3\2\2\2\20t\3\2\2\2\22{\3\2\2\2\24\u0085")
+        buf.write("\3\2\2\2\26\u0087\3\2\2\2\30\u008f\3\2\2\2\32\u0095\3")
+        buf.write("\2\2\2\34\u0097\3\2\2\2\36\u009f\3\2\2\2 \u00a6\3\2\2")
+        buf.write("\2\"\u00ab\3\2\2\2$\u00b1\3\2\2\2&\u00b3\3\2\2\2(\u00b6")
+        buf.write("\3\2\2\2*\u00ba\3\2\2\2,\u00c0\3\2\2\2.\u00c6\3\2\2\2")
+        buf.write("\60\u00ca\3\2\2\2\62\u00cd\3\2\2\2\64\u00d7\3\2\2\2\66")
+        buf.write("\u00da\3\2\2\28\u00e6\3\2\2\2:\u00e8\3\2\2\2<\u00f1\3")
+        buf.write("\2\2\2>\u00f8\3\2\2\2@\u0101\3\2\2\2B\u0103\3\2\2\2D\u0105")
+        buf.write("\3\2\2\2F\u0107\3\2\2\2H\u0115\3\2\2\2J\u0117\3\2\2\2")
+        buf.write("L\u011b\3\2\2\2N\u011d\3\2\2\2P\u0128\3\2\2\2RS\7\b\2")
+        buf.write("\2ST\7\t\2\2TU\7\b\2\2UV\5\4\3\2VW\7\b\2\2W\3\3\2\2\2")
+        buf.write("XY\5\6\4\2YZ\5\32\16\2Z\5\3\2\2\2[\\\5\b\5\2\\]\5\6\4")
+        buf.write("\2]c\3\2\2\2^_\5\n\6\2_`\5\6\4\2`c\3\2\2\2ac\3\2\2\2b")
+        buf.write("[\3\2\2\2b^\3\2\2\2ba\3\2\2\2c\7\3\2\2\2de\7\b\2\2ef\7")
+        buf.write("\t\2\2fg\7\n\2\2gh\7\6\2\2hi\7\n\2\2i\t\3\2\2\2jk\5\f")
+        buf.write("\7\2kl\5\20\t\2lm\7\n\2\2m\13\3\2\2\2no\t\2\2\2o\r\3\2")
+        buf.write("\2\2ps\5\f\7\2qs\7\b\2\2rp\3\2\2\2rq\3\2\2\2s\17\3\2\2")
+        buf.write("\2tu\7\t\2\2uv\5\22\n\2v\21\3\2\2\2wx\7\n\2\2xy\7\t\2")
+        buf.write("\2y|\5\22\n\2z|\3\2\2\2{w\3\2\2\2{z\3\2\2\2|\23\3\2\2")
+        buf.write("\2}~\7\n\2\2~\177\5\26\f\2\177\u0080\5\30\r\2\u0080\u0081")
+        buf.write("\7\n\2\2\u0081\u0086\3\2\2\2\u0082\u0083\7\n\2\2\u0083")
+        buf.write("\u0086\7\n\2\2\u0084\u0086\3\2\2\2\u0085}\3\2\2\2\u0085")
+        buf.write("\u0082\3\2\2\2\u0085\u0084\3\2\2\2\u0086\25\3\2\2\2\u0087")
+        buf.write("\u0088\5\f\7\2\u0088\u0089\7\t\2\2\u0089\27\3\2\2\2\u008a")
+        buf.write("\u008b\7\n\2\2\u008b\u008c\5\26\f\2\u008c\u008d\5\30\r")
+        buf.write("\2\u008d\u0090\3\2\2\2\u008e\u0090\3\2\2\2\u008f\u008a")
+        buf.write("\3\2\2\2\u008f\u008e\3\2\2\2\u0090\31\3\2\2\2\u0091\u0092")
+        buf.write("\5\34\17\2\u0092\u0093\5\32\16\2\u0093\u0096\3\2\2\2\u0094")
+        buf.write("\u0096\3\2\2\2\u0095\u0091\3\2\2\2\u0095\u0094\3\2\2\2")
+        buf.write("\u0096\33\3\2\2\2\u0097\u0098\7\b\2\2\u0098\u0099\5\16")
+        buf.write("\b\2\u0099\u009a\7\t\2\2\u009a\u009b\5\24\13\2\u009b\u009c")
+        buf.write("\7\b\2\2\u009c\u009d\5\36\20\2\u009d\u009e\7\b\2\2\u009e")
         buf.write("\35\3\2\2\2\u009f\u00a0\5\6\4\2\u00a0\u00a1\5 \21\2\u00a1")
         buf.write("\37\3\2\2\2\u00a2\u00a3\5\"\22\2\u00a3\u00a4\5 \21\2\u00a4")
         buf.write("\u00a7\3\2\2\2\u00a5\u00a7\3\2\2\2\u00a6\u00a2\3\2\2\2")
@@ -80,55 +79,55 @@ def serializedATN():
         buf.write("\2\2\2\u00ad\u00b2\5&\24\2\u00ae\u00b2\5*\26\2\u00af\u00b2")
         buf.write("\5,\27\2\u00b0\u00b2\5.\30\2\u00b1\u00ad\3\2\2\2\u00b1")
         buf.write("\u00ae\3\2\2\2\u00b1\u00af\3\2\2\2\u00b1\u00b0\3\2\2\2")
-        buf.write("\u00b2%\3\2\2\2\u00b3\u00b4\5(\25\2\u00b4\u00b5\7\4\2")
-        buf.write("\2\u00b5\'\3\2\2\2\u00b6\u00b7\7\31\2\2\u00b7\u00b8\7")
-        buf.write("\3\2\2\u00b8\u00b9\5\60\31\2\u00b9)\3\2\2\2\u00ba\u00bb")
-        buf.write("\7\30\2\2\u00bb\u00bc\7\6\2\2\u00bc\u00bd\5\20\t\2\u00bd")
-        buf.write("\u00be\7\7\2\2\u00be\u00bf\7\4\2\2\u00bf+\3\2\2\2\u00c0")
-        buf.write("\u00c1\7\30\2\2\u00c1\u00c2\7\6\2\2\u00c2\u00c3\5\20\t")
-        buf.write("\2\u00c3\u00c4\7\7\2\2\u00c4\u00c5\7\4\2\2\u00c5-\3\2")
-        buf.write("\2\2\u00c6\u00c7\7\30\2\2\u00c7\u00c8\5\60\31\2\u00c8")
-        buf.write("\u00c9\7\4\2\2\u00c9/\3\2\2\2\u00ca\u00cb\5\62\32\2\u00cb")
-        buf.write("\u00cc\5\64\33\2\u00cc\61\3\2\2\2\u00cd\u00d4\b\32\1\2")
-        buf.write("\u00ce\u00cf\f\4\2\2\u00cf\u00d0\5\64\33\2\u00d0\u00d1")
-        buf.write("\5B\"\2\u00d1\u00d3\3\2\2\2\u00d2\u00ce\3\2\2\2\u00d3")
-        buf.write("\u00d6\3\2\2\2\u00d4\u00d2\3\2\2\2\u00d4\u00d5\3\2\2\2")
-        buf.write("\u00d5\63\3\2\2\2\u00d6\u00d4\3\2\2\2\u00d7\u00d8\5\66")
-        buf.write("\34\2\u00d8\u00d9\58\35\2\u00d9\65\3\2\2\2\u00da\u00e1")
-        buf.write("\b\34\1\2\u00db\u00dc\f\4\2\2\u00dc\u00dd\58\35\2\u00dd")
-        buf.write("\u00de\5D#\2\u00de\u00e0\3\2\2\2\u00df\u00db\3\2\2\2\u00e0")
-        buf.write("\u00e3\3\2\2\2\u00e1\u00df\3\2\2\2\u00e1\u00e2\3\2\2\2")
-        buf.write("\u00e2\67\3\2\2\2\u00e3\u00e1\3\2\2\2\u00e4\u00e7\5@!")
-        buf.write("\2\u00e5\u00e7\5:\36\2\u00e6\u00e4\3\2\2\2\u00e6\u00e5")
-        buf.write("\3\2\2\2\u00e79\3\2\2\2\u00e8\u00e9\7\31\2\2\u00e9\u00ea")
-        buf.write("\7\6\2\2\u00ea\u00eb\5<\37\2\u00eb\u00ec\7\7\2\2\u00ec")
-        buf.write(";\3\2\2\2\u00ed\u00ee\5\60\31\2\u00ee\u00ef\5> \2\u00ef")
-        buf.write("\u00f2\3\2\2\2\u00f0\u00f2\3\2\2\2\u00f1\u00ed\3\2\2\2")
-        buf.write("\u00f1\u00f0\3\2\2\2\u00f2=\3\2\2\2\u00f3\u00f4\7\5\2")
-        buf.write("\2\u00f4\u00f5\5\60\31\2\u00f5\u00f6\5> \2\u00f6\u00f9")
-        buf.write("\3\2\2\2\u00f7\u00f9\3\2\2\2\u00f8\u00f3\3\2\2\2\u00f8")
-        buf.write("\u00f7\3\2\2\2\u00f9?\3\2\2\2\u00fa\u00fb\7\6\2\2\u00fb")
-        buf.write("\u00fc\5\60\31\2\u00fc\u00fd\7\7\2\2\u00fd\u0102\3\2\2")
-        buf.write("\2\u00fe\u0102\7\31\2\2\u00ff\u0102\7\24\2\2\u0100\u0102")
-        buf.write("\7\25\2\2\u0101\u00fa\3\2\2\2\u0101\u00fe\3\2\2\2\u0101")
-        buf.write("\u00ff\3\2\2\2\u0101\u0100\3\2\2\2\u0102A\3\2\2\2\u0103")
-        buf.write("\u0104\t\3\2\2\u0104C\3\2\2\2\u0105\u0106\t\4\2\2\u0106")
-        buf.write("E\3\2\2\2\u0107\u0108\7\30\2\2\u0108\u0109\7\6\2\2\u0109")
-        buf.write("\u010a\5J&\2\u010a\u010b\7\7\2\2\u010b\u010c\5\6\4\2\u010c")
-        buf.write("\u010d\5 \21\2\u010d\u010e\5H%\2\u010e\u010f\7\30\2\2")
-        buf.write("\u010fG\3\2\2\2\u0110\u0111\7\30\2\2\u0111\u0112\5\6\4")
-        buf.write("\2\u0112\u0113\5 \21\2\u0113\u0116\3\2\2\2\u0114\u0116")
-        buf.write("\3\2\2\2\u0115\u0110\3\2\2\2\u0115\u0114\3\2\2\2\u0116")
-        buf.write("I\3\2\2\2\u0117\u0118\5\60\31\2\u0118\u0119\5L\'\2\u0119")
-        buf.write("\u011a\5\60\31\2\u011aK\3\2\2\2\u011b\u011c\t\5\2\2\u011c")
-        buf.write("M\3\2\2\2\u011d\u011e\7\30\2\2\u011e\u011f\7\6\2\2\u011f")
-        buf.write("\u0120\5J&\2\u0120\u0121\7\7\2\2\u0121\u0122\5\6\4\2\u0122")
-        buf.write("\u0123\5 \21\2\u0123\u0124\7\30\2\2\u0124O\3\2\2\2\u0125")
-        buf.write("\u0127\13\2\2\2\u0126\u0125\3\2\2\2\u0127\u012a\3\2\2")
-        buf.write("\2\u0128\u0129\3\2\2\2\u0128\u0126\3\2\2\2\u0129\u012b")
-        buf.write("\3\2\2\2\u012a\u0128\3\2\2\2\u012b\u012c\7\2\2\3\u012c")
-        buf.write("Q\3\2\2\2\23br{\u0085\u008f\u0095\u00a6\u00ab\u00b1\u00d4")
-        buf.write("\u00e1\u00e6\u00f1\u00f8\u0101\u0115\u0128")
+        buf.write("\u00b2%\3\2\2\2\u00b3\u00b4\5(\25\2\u00b4\u00b5\7\n\2")
+        buf.write("\2\u00b5\'\3\2\2\2\u00b6\u00b7\7\t\2\2\u00b7\u00b8\7\n")
+        buf.write("\2\2\u00b8\u00b9\5\60\31\2\u00b9)\3\2\2\2\u00ba\u00bb")
+        buf.write("\7\b\2\2\u00bb\u00bc\7\n\2\2\u00bc\u00bd\5\20\t\2\u00bd")
+        buf.write("\u00be\7\n\2\2\u00be\u00bf\7\n\2\2\u00bf+\3\2\2\2\u00c0")
+        buf.write("\u00c1\7\b\2\2\u00c1\u00c2\7\n\2\2\u00c2\u00c3\5\20\t")
+        buf.write("\2\u00c3\u00c4\7\n\2\2\u00c4\u00c5\7\n\2\2\u00c5-\3\2")
+        buf.write("\2\2\u00c6\u00c7\7\b\2\2\u00c7\u00c8\5\60\31\2\u00c8\u00c9")
+        buf.write("\7\n\2\2\u00c9/\3\2\2\2\u00ca\u00cb\5\62\32\2\u00cb\u00cc")
+        buf.write("\5\64\33\2\u00cc\61\3\2\2\2\u00cd\u00d4\b\32\1\2\u00ce")
+        buf.write("\u00cf\f\4\2\2\u00cf\u00d0\5\64\33\2\u00d0\u00d1\5B\"")
+        buf.write("\2\u00d1\u00d3\3\2\2\2\u00d2\u00ce\3\2\2\2\u00d3\u00d6")
+        buf.write("\3\2\2\2\u00d4\u00d2\3\2\2\2\u00d4\u00d5\3\2\2\2\u00d5")
+        buf.write("\63\3\2\2\2\u00d6\u00d4\3\2\2\2\u00d7\u00d8\5\66\34\2")
+        buf.write("\u00d8\u00d9\58\35\2\u00d9\65\3\2\2\2\u00da\u00e1\b\34")
+        buf.write("\1\2\u00db\u00dc\f\4\2\2\u00dc\u00dd\58\35\2\u00dd\u00de")
+        buf.write("\5D#\2\u00de\u00e0\3\2\2\2\u00df\u00db\3\2\2\2\u00e0\u00e3")
+        buf.write("\3\2\2\2\u00e1\u00df\3\2\2\2\u00e1\u00e2\3\2\2\2\u00e2")
+        buf.write("\67\3\2\2\2\u00e3\u00e1\3\2\2\2\u00e4\u00e7\5@!\2\u00e5")
+        buf.write("\u00e7\5:\36\2\u00e6\u00e4\3\2\2\2\u00e6\u00e5\3\2\2\2")
+        buf.write("\u00e79\3\2\2\2\u00e8\u00e9\7\t\2\2\u00e9\u00ea\7\n\2")
+        buf.write("\2\u00ea\u00eb\5<\37\2\u00eb\u00ec\7\n\2\2\u00ec;\3\2")
+        buf.write("\2\2\u00ed\u00ee\5\60\31\2\u00ee\u00ef\5> \2\u00ef\u00f2")
+        buf.write("\3\2\2\2\u00f0\u00f2\3\2\2\2\u00f1\u00ed\3\2\2\2\u00f1")
+        buf.write("\u00f0\3\2\2\2\u00f2=\3\2\2\2\u00f3\u00f4\7\n\2\2\u00f4")
+        buf.write("\u00f5\5\60\31\2\u00f5\u00f6\5> \2\u00f6\u00f9\3\2\2\2")
+        buf.write("\u00f7\u00f9\3\2\2\2\u00f8\u00f3\3\2\2\2\u00f8\u00f7\3")
+        buf.write("\2\2\2\u00f9?\3\2\2\2\u00fa\u00fb\7\n\2\2\u00fb\u00fc")
+        buf.write("\5\60\31\2\u00fc\u00fd\7\n\2\2\u00fd\u0102\3\2\2\2\u00fe")
+        buf.write("\u0102\7\t\2\2\u00ff\u0102\7\4\2\2\u0100\u0102\7\5\2\2")
+        buf.write("\u0101\u00fa\3\2\2\2\u0101\u00fe\3\2\2\2\u0101\u00ff\3")
+        buf.write("\2\2\2\u0101\u0100\3\2\2\2\u0102A\3\2\2\2\u0103\u0104")
+        buf.write("\7\n\2\2\u0104C\3\2\2\2\u0105\u0106\7\n\2\2\u0106E\3\2")
+        buf.write("\2\2\u0107\u0108\7\b\2\2\u0108\u0109\7\n\2\2\u0109\u010a")
+        buf.write("\5J&\2\u010a\u010b\7\n\2\2\u010b\u010c\5\6\4\2\u010c\u010d")
+        buf.write("\5 \21\2\u010d\u010e\5H%\2\u010e\u010f\7\b\2\2\u010fG")
+        buf.write("\3\2\2\2\u0110\u0111\7\b\2\2\u0111\u0112\5\6\4\2\u0112")
+        buf.write("\u0113\5 \21\2\u0113\u0116\3\2\2\2\u0114\u0116\3\2\2\2")
+        buf.write("\u0115\u0110\3\2\2\2\u0115\u0114\3\2\2\2\u0116I\3\2\2")
+        buf.write("\2\u0117\u0118\5\60\31\2\u0118\u0119\5L\'\2\u0119\u011a")
+        buf.write("\5\60\31\2\u011aK\3\2\2\2\u011b\u011c\7\n\2\2\u011cM\3")
+        buf.write("\2\2\2\u011d\u011e\7\b\2\2\u011e\u011f\7\n\2\2\u011f\u0120")
+        buf.write("\5J&\2\u0120\u0121\7\n\2\2\u0121\u0122\5\6\4\2\u0122\u0123")
+        buf.write("\5 \21\2\u0123\u0124\7\b\2\2\u0124O\3\2\2\2\u0125\u0127")
+        buf.write("\13\2\2\2\u0126\u0125\3\2\2\2\u0127\u012a\3\2\2\2\u0128")
+        buf.write("\u0129\3\2\2\2\u0128\u0126\3\2\2\2\u0129\u012b\3\2\2\2")
+        buf.write("\u012a\u0128\3\2\2\2\u012b\u012c\7\2\2\3\u012cQ\3\2\2")
+        buf.write("\2\23br{\u0085\u008f\u0095\u00a6\u00ab\u00b1\u00d4\u00e1")
+        buf.write("\u00e6\u00f1\u00f8\u0101\u0115\u0128")
         return buf.getvalue()
 
 
@@ -142,16 +141,10 @@ class TinyParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "':='", "';'", "','", "'('", "')'", "'+'", 
-                     "'-'", "'*'", "'/'", "'<'", "'>'", "'='", "'!='", "'<='", 
-                     "'>='" ]
+    literalNames = [  ]
 
-    symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "STR", "WS", "INTLITERAL", "FLOATLITERAL", "STRINGLITERAL", 
-                      "COMMENT", "KEYWORD", "ID", "OPERATOR" ]
+    symbolicNames = [ "<INVALID>", "WS", "INTLITERAL", "FLOATLITERAL", "STRINGLITERAL", 
+                      "COMMENT", "KEYWORD", "IDENTIFIER", "OPERATOR" ]
 
     RULE_program = 0
     RULE_pgm_body = 1
@@ -205,30 +198,14 @@ class TinyParser ( Parser ):
                    "cond", "compop", "while_stmt", "start" ]
 
     EOF = Token.EOF
-    T__0=1
-    T__1=2
-    T__2=3
-    T__3=4
-    T__4=5
-    T__5=6
-    T__6=7
-    T__7=8
-    T__8=9
-    T__9=10
-    T__10=11
-    T__11=12
-    T__12=13
-    T__13=14
-    T__14=15
-    STR=16
-    WS=17
-    INTLITERAL=18
-    FLOATLITERAL=19
-    STRINGLITERAL=20
-    COMMENT=21
-    KEYWORD=22
-    ID=23
-    OPERATOR=24
+    WS=1
+    INTLITERAL=2
+    FLOATLITERAL=3
+    STRINGLITERAL=4
+    COMMENT=5
+    KEYWORD=6
+    IDENTIFIER=7
+    OPERATOR=8
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -251,8 +228,8 @@ class TinyParser ( Parser ):
             else:
                 return self.getToken(TinyParser.KEYWORD, i)
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
 
         def pgm_body(self):
             return self.getTypedRuleContext(TinyParser.Pgm_bodyContext,0)
@@ -281,7 +258,7 @@ class TinyParser ( Parser ):
             self.state = 80
             self.match(TinyParser.KEYWORD)
             self.state = 81
-            self.match(TinyParser.ID)
+            self.match(TinyParser.IDENTIFIER)
             self.state = 82
             self.match(TinyParser.KEYWORD)
             self.state = 83
@@ -424,11 +401,17 @@ class TinyParser ( Parser ):
         def KEYWORD(self):
             return self.getToken(TinyParser.KEYWORD, 0)
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
 
-        def STR(self):
-            return self.getToken(TinyParser.STR, 0)
+        def OPERATOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(TinyParser.OPERATOR)
+            else:
+                return self.getToken(TinyParser.OPERATOR, i)
+
+        def STRINGLITERAL(self):
+            return self.getToken(TinyParser.STRINGLITERAL, 0)
 
         def getRuleIndex(self):
             return TinyParser.RULE_string_decl
@@ -453,13 +436,13 @@ class TinyParser ( Parser ):
             self.state = 98
             self.match(TinyParser.KEYWORD)
             self.state = 99
-            self.match(TinyParser.ID)
+            self.match(TinyParser.IDENTIFIER)
             self.state = 100
-            self.match(TinyParser.T__0)
+            self.match(TinyParser.OPERATOR)
             self.state = 101
-            self.match(TinyParser.STR)
+            self.match(TinyParser.STRINGLITERAL)
             self.state = 102
-            self.match(TinyParser.T__1)
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -482,6 +465,9 @@ class TinyParser ( Parser ):
         def id_list(self):
             return self.getTypedRuleContext(TinyParser.Id_listContext,0)
 
+
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
 
         def getRuleIndex(self):
             return TinyParser.RULE_var_decl
@@ -508,7 +494,7 @@ class TinyParser ( Parser ):
             self.state = 105
             self.id_list()
             self.state = 106
-            self.match(TinyParser.T__1)
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -627,8 +613,8 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
 
         def id_tail(self):
             return self.getTypedRuleContext(TinyParser.Id_tailContext,0)
@@ -655,7 +641,7 @@ class TinyParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 114
-            self.match(TinyParser.ID)
+            self.match(TinyParser.IDENTIFIER)
             self.state = 115
             self.id_tail()
         except RecognitionException as re:
@@ -673,8 +659,11 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
+
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
 
         def id_tail(self):
             return self.getTypedRuleContext(TinyParser.Id_tailContext,0)
@@ -701,22 +690,22 @@ class TinyParser ( Parser ):
         try:
             self.state = 121
             self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [TinyParser.T__2]:
+            la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
+            if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 117
-                self.match(TinyParser.T__2)
+                self.match(TinyParser.OPERATOR)
                 self.state = 118
-                self.match(TinyParser.ID)
+                self.match(TinyParser.IDENTIFIER)
                 self.state = 119
                 self.id_tail()
                 pass
-            elif token in [TinyParser.T__1, TinyParser.T__4]:
+
+            elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
-            else:
-                raise NoViableAltException(self)
+
 
         except RecognitionException as re:
             localctx.exception = re
@@ -732,6 +721,12 @@ class TinyParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+
+        def OPERATOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(TinyParser.OPERATOR)
+            else:
+                return self.getToken(TinyParser.OPERATOR, i)
 
         def param_decl(self):
             return self.getTypedRuleContext(TinyParser.Param_declContext,0)
@@ -766,21 +761,21 @@ class TinyParser ( Parser ):
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 123
-                self.match(TinyParser.T__3)
+                self.match(TinyParser.OPERATOR)
                 self.state = 124
                 self.param_decl()
                 self.state = 125
                 self.param_decl_tail()
                 self.state = 126
-                self.match(TinyParser.T__4)
+                self.match(TinyParser.OPERATOR)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 128
-                self.match(TinyParser.T__3)
+                self.match(TinyParser.OPERATOR)
                 self.state = 129
-                self.match(TinyParser.T__4)
+                self.match(TinyParser.OPERATOR)
                 pass
 
             elif la_ == 3:
@@ -808,8 +803,8 @@ class TinyParser ( Parser ):
             return self.getTypedRuleContext(TinyParser.Var_typeContext,0)
 
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
 
         def getRuleIndex(self):
             return TinyParser.RULE_param_decl
@@ -834,7 +829,7 @@ class TinyParser ( Parser ):
             self.state = 133
             self.var_type()
             self.state = 134
-            self.match(TinyParser.ID)
+            self.match(TinyParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -849,6 +844,9 @@ class TinyParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
 
         def param_decl(self):
             return self.getTypedRuleContext(TinyParser.Param_declContext,0)
@@ -879,22 +877,22 @@ class TinyParser ( Parser ):
         try:
             self.state = 141
             self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [TinyParser.T__2]:
+            la_ = self._interp.adaptivePredict(self._input,4,self._ctx)
+            if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 136
-                self.match(TinyParser.T__2)
+                self.match(TinyParser.OPERATOR)
                 self.state = 137
                 self.param_decl()
                 self.state = 138
                 self.param_decl_tail()
                 pass
-            elif token in [TinyParser.T__4]:
+
+            elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
-            else:
-                raise NoViableAltException(self)
+
 
         except RecognitionException as re:
             localctx.exception = re
@@ -980,8 +978,8 @@ class TinyParser ( Parser ):
             return self.getTypedRuleContext(TinyParser.Any_typeContext,0)
 
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
 
         def param_decl_list(self):
             return self.getTypedRuleContext(TinyParser.Param_decl_listContext,0)
@@ -1016,7 +1014,7 @@ class TinyParser ( Parser ):
             self.state = 150
             self.any_type()
             self.state = 151
-            self.match(TinyParser.ID)
+            self.match(TinyParser.IDENTIFIER)
             self.state = 152
             self.param_decl_list()
             self.state = 153
@@ -1296,6 +1294,9 @@ class TinyParser ( Parser ):
             return self.getTypedRuleContext(TinyParser.Assign_exprContext,0)
 
 
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
+
         def getRuleIndex(self):
             return TinyParser.RULE_assign_stmt
 
@@ -1319,7 +1320,7 @@ class TinyParser ( Parser ):
             self.state = 177
             self.assign_expr()
             self.state = 178
-            self.match(TinyParser.T__1)
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1335,8 +1336,11 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
+
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
 
         def expr(self):
             return self.getTypedRuleContext(TinyParser.ExprContext,0)
@@ -1363,9 +1367,9 @@ class TinyParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 180
-            self.match(TinyParser.ID)
+            self.match(TinyParser.IDENTIFIER)
             self.state = 181
-            self.match(TinyParser.T__0)
+            self.match(TinyParser.OPERATOR)
             self.state = 182
             self.expr()
         except RecognitionException as re:
@@ -1385,6 +1389,12 @@ class TinyParser ( Parser ):
 
         def KEYWORD(self):
             return self.getToken(TinyParser.KEYWORD, 0)
+
+        def OPERATOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(TinyParser.OPERATOR)
+            else:
+                return self.getToken(TinyParser.OPERATOR, i)
 
         def id_list(self):
             return self.getTypedRuleContext(TinyParser.Id_listContext,0)
@@ -1413,13 +1423,13 @@ class TinyParser ( Parser ):
             self.state = 184
             self.match(TinyParser.KEYWORD)
             self.state = 185
-            self.match(TinyParser.T__3)
+            self.match(TinyParser.OPERATOR)
             self.state = 186
             self.id_list()
             self.state = 187
-            self.match(TinyParser.T__4)
+            self.match(TinyParser.OPERATOR)
             self.state = 188
-            self.match(TinyParser.T__1)
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1437,6 +1447,12 @@ class TinyParser ( Parser ):
 
         def KEYWORD(self):
             return self.getToken(TinyParser.KEYWORD, 0)
+
+        def OPERATOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(TinyParser.OPERATOR)
+            else:
+                return self.getToken(TinyParser.OPERATOR, i)
 
         def id_list(self):
             return self.getTypedRuleContext(TinyParser.Id_listContext,0)
@@ -1465,13 +1481,13 @@ class TinyParser ( Parser ):
             self.state = 190
             self.match(TinyParser.KEYWORD)
             self.state = 191
-            self.match(TinyParser.T__3)
+            self.match(TinyParser.OPERATOR)
             self.state = 192
             self.id_list()
             self.state = 193
-            self.match(TinyParser.T__4)
+            self.match(TinyParser.OPERATOR)
             self.state = 194
-            self.match(TinyParser.T__1)
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1493,6 +1509,9 @@ class TinyParser ( Parser ):
         def expr(self):
             return self.getTypedRuleContext(TinyParser.ExprContext,0)
 
+
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
 
         def getRuleIndex(self):
             return TinyParser.RULE_return_stmt
@@ -1519,7 +1538,7 @@ class TinyParser ( Parser ):
             self.state = 197
             self.expr()
             self.state = 198
-            self.match(TinyParser.T__1)
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1831,8 +1850,14 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
+
+        def OPERATOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(TinyParser.OPERATOR)
+            else:
+                return self.getToken(TinyParser.OPERATOR, i)
 
         def expr_list(self):
             return self.getTypedRuleContext(TinyParser.Expr_listContext,0)
@@ -1859,13 +1884,13 @@ class TinyParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 230
-            self.match(TinyParser.ID)
+            self.match(TinyParser.IDENTIFIER)
             self.state = 231
-            self.match(TinyParser.T__3)
+            self.match(TinyParser.OPERATOR)
             self.state = 232
             self.expr_list()
             self.state = 233
-            self.match(TinyParser.T__4)
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1940,6 +1965,9 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
+
         def expr(self):
             return self.getTypedRuleContext(TinyParser.ExprContext,0)
 
@@ -1969,22 +1997,22 @@ class TinyParser ( Parser ):
         try:
             self.state = 246
             self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [TinyParser.T__2]:
+            la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
+            if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 241
-                self.match(TinyParser.T__2)
+                self.match(TinyParser.OPERATOR)
                 self.state = 242
                 self.expr()
                 self.state = 243
                 self.expr_list_tail()
                 pass
-            elif token in [TinyParser.T__4]:
+
+            elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
-            else:
-                raise NoViableAltException(self)
+
 
         except RecognitionException as re:
             localctx.exception = re
@@ -2001,12 +2029,18 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def OPERATOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(TinyParser.OPERATOR)
+            else:
+                return self.getToken(TinyParser.OPERATOR, i)
+
         def expr(self):
             return self.getTypedRuleContext(TinyParser.ExprContext,0)
 
 
-        def ID(self):
-            return self.getToken(TinyParser.ID, 0)
+        def IDENTIFIER(self):
+            return self.getToken(TinyParser.IDENTIFIER, 0)
 
         def INTLITERAL(self):
             return self.getToken(TinyParser.INTLITERAL, 0)
@@ -2036,19 +2070,19 @@ class TinyParser ( Parser ):
             self.state = 255
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [TinyParser.T__3]:
+            if token in [TinyParser.OPERATOR]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 248
-                self.match(TinyParser.T__3)
+                self.match(TinyParser.OPERATOR)
                 self.state = 249
                 self.expr()
                 self.state = 250
-                self.match(TinyParser.T__4)
+                self.match(TinyParser.OPERATOR)
                 pass
-            elif token in [TinyParser.ID]:
+            elif token in [TinyParser.IDENTIFIER]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 252
-                self.match(TinyParser.ID)
+                self.match(TinyParser.IDENTIFIER)
                 pass
             elif token in [TinyParser.INTLITERAL]:
                 self.enterOuterAlt(localctx, 3)
@@ -2078,6 +2112,8 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
 
         def getRuleIndex(self):
             return TinyParser.RULE_addop
@@ -2097,16 +2133,10 @@ class TinyParser ( Parser ):
 
         localctx = TinyParser.AddopContext(self, self._ctx, self.state)
         self.enterRule(localctx, 64, self.RULE_addop)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 257
-            _la = self._input.LA(1)
-            if not(_la==TinyParser.T__5 or _la==TinyParser.T__6):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2122,6 +2152,8 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
 
         def getRuleIndex(self):
             return TinyParser.RULE_mulop
@@ -2141,16 +2173,10 @@ class TinyParser ( Parser ):
 
         localctx = TinyParser.MulopContext(self, self._ctx, self.state)
         self.enterRule(localctx, 66, self.RULE_mulop)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 259
-            _la = self._input.LA(1)
-            if not(_la==TinyParser.T__7 or _la==TinyParser.T__8):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2171,6 +2197,12 @@ class TinyParser ( Parser ):
                 return self.getTokens(TinyParser.KEYWORD)
             else:
                 return self.getToken(TinyParser.KEYWORD, i)
+
+        def OPERATOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(TinyParser.OPERATOR)
+            else:
+                return self.getToken(TinyParser.OPERATOR, i)
 
         def cond(self):
             return self.getTypedRuleContext(TinyParser.CondContext,0)
@@ -2211,11 +2243,11 @@ class TinyParser ( Parser ):
             self.state = 261
             self.match(TinyParser.KEYWORD)
             self.state = 262
-            self.match(TinyParser.T__3)
+            self.match(TinyParser.OPERATOR)
             self.state = 263
             self.cond()
             self.state = 264
-            self.match(TinyParser.T__4)
+            self.match(TinyParser.OPERATOR)
             self.state = 265
             self.decl()
             self.state = 266
@@ -2355,6 +2387,8 @@ class TinyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def OPERATOR(self):
+            return self.getToken(TinyParser.OPERATOR, 0)
 
         def getRuleIndex(self):
             return TinyParser.RULE_compop
@@ -2374,16 +2408,10 @@ class TinyParser ( Parser ):
 
         localctx = TinyParser.CompopContext(self, self._ctx, self.state)
         self.enterRule(localctx, 74, self.RULE_compop)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 281
-            _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TinyParser.T__9) | (1 << TinyParser.T__10) | (1 << TinyParser.T__11) | (1 << TinyParser.T__12) | (1 << TinyParser.T__13) | (1 << TinyParser.T__14))) != 0)):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
+            self.match(TinyParser.OPERATOR)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2404,6 +2432,12 @@ class TinyParser ( Parser ):
                 return self.getTokens(TinyParser.KEYWORD)
             else:
                 return self.getToken(TinyParser.KEYWORD, i)
+
+        def OPERATOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(TinyParser.OPERATOR)
+            else:
+                return self.getToken(TinyParser.OPERATOR, i)
 
         def cond(self):
             return self.getTypedRuleContext(TinyParser.CondContext,0)
@@ -2440,11 +2474,11 @@ class TinyParser ( Parser ):
             self.state = 283
             self.match(TinyParser.KEYWORD)
             self.state = 284
-            self.match(TinyParser.T__3)
+            self.match(TinyParser.OPERATOR)
             self.state = 285
             self.cond()
             self.state = 286
-            self.match(TinyParser.T__4)
+            self.match(TinyParser.OPERATOR)
             self.state = 287
             self.decl()
             self.state = 288

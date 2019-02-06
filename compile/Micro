@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import sys
+from antlr4 import *
+from TinyLexer import TinyLexer
+from TinyParser import TinyParser
+
+
+def main(argv):
+    inp = FileStream(argv[1])
+    lexer = TinyLexer(inp)
+    tokens = lexer.getAllTokens()
+
+    types = {}
+    t = open("TinyLexer.tokens", "r")
+    for line in t:
+        line = line.replace("\n", "")
+        line = line.replace("\r", "")
+        l = line.split("=")
+        types[int(l[1])] = l[0]
+        print(l[0])
+    t.close()
+
+    f = open("output_" + argv[1][0:4] + ".txt", "w")
+    for token in tokens:
+        f.write("Token Type: %s\r\n" % types[token.type])
+        f.write("Value: %s\r\n" % token.text)
+    f.close()
+
+if __name__ == '__main__':
+    main(sys.argv)
