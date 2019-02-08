@@ -1,0 +1,28 @@
+Token Type: 'PROGRAM'
+Value: PROGRAM
+Token Type: IDENTIFIER
+Value: test
+Token Type: 'BEGIN'
+Value: BEGIN
+Token Type: IDENTIFIER
+Value: WRONG
+Token Type: IDENTIFIER
+Value: dummy
+Token Type: OPERATOR
+Value: :=
+Token Type: STRINGLITERAL
+Value: "Kirby"
+Token Type: OPERATOR
+Value: ;
+Token Type: KEYWORD
+Value: WRITE
+Token Type: OPERATOR
+Value: (
+Token Type: IDENTIFIER
+Value: dummy
+Token Type: OPERATOR
+Value: )
+Token Type: OPERATOR
+Value: ;
+Token Type: 'END'
+Value: END
