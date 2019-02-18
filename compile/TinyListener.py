@@ -8,6 +8,15 @@ else:
 # This class defines a complete listener for a parse tree produced by TinyParser.
 class TinyListener(ParseTreeListener):
 
+    # Enter a parse tree produced by TinyParser#start.
+    def enterStart(self, ctx:TinyParser.StartContext):
+        pass
+
+    # Exit a parse tree produced by TinyParser#start.
+    def exitStart(self, ctx:TinyParser.StartContext):
+        pass
+
+
     # Enter a parse tree produced by TinyParser#program.
     def enterProgram(self, ctx:TinyParser.ProgramContext):
         pass
@@ -356,15 +365,6 @@ class TinyListener(ParseTreeListener):
 
     # Exit a parse tree produced by TinyParser#while_stmt.
     def exitWhile_stmt(self, ctx:TinyParser.While_stmtContext):
-        pass
-
-
-    # Enter a parse tree produced by TinyParser#start.
-    def enterStart(self, ctx:TinyParser.StartContext):
-        pass
-
-    # Exit a parse tree produced by TinyParser#start.
-    def exitStart(self, ctx:TinyParser.StartContext):
         pass
 
 
