@@ -92,7 +92,7 @@ KEYWORD: 'PROGRAM'
     |'STRING'
     |'FLOAT';
 
-IDENTIFIER				  : [A-Za-z]+[A-Za-z0-9]* ;
+IDENTIFIER: [A-Za-z]+[A-Za-z0-9]* ;
 
 
 OPERATOR:':='
