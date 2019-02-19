@@ -15,10 +15,12 @@ def main(argv):
     tree = parser.program()
 
     errs = parser.getNumberOfSyntaxErrors()
+    result = open("result.txt", 'w')
     if errs != 0:
-        print('Not Accepted')
+        result.write('Not accepted')
     else:
-        print('Accepted')
+        result.write('Accepted')
+    result.close()
 
 if __name__ == '__main__':
     main(sys.argv)
