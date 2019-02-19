@@ -14,8 +14,11 @@ def main(argv):
     parser = TinyParser(token_stream)
     tree = parser.program()
 
-    print(parser.getNumberOfSyntaxErrors())
-
+    errs = parser.getNumberOfSyntaxErrors()
+    if errs != 0:
+        print('Not Accepted')
+    else:
+        print('Accepted')
 
 if __name__ == '__main__':
     main(sys.argv)
