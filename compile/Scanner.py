@@ -12,14 +12,18 @@ def main(argv):
 
     token_stream = CommonTokenStream(lexer)
     parser = TinyParser(token_stream)
-    tree = parser.program()
 
+    tree = parser.program()
     errs = parser.getNumberOfSyntaxErrors()
+    #print(parser.getNumberOfSyntaxErrors())
+    #print(tree.toStringTree(recog=parser))
     result = open("result.txt", 'w')
     if errs != 0:
         result.write('Not accepted')
+        print('Not accepted')
     else:
         result.write('Accepted')
+        print('Accepted')
     result.close()
 
 if __name__ == '__main__':
