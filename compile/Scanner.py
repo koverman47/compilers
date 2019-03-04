@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from antlr4 import *
+from Listener import Listener
 from TinyLexer import TinyLexer
 from TinyParser import TinyParser
 import sys
@@ -13,18 +14,11 @@ def main(argv):
     token_stream = CommonTokenStream(lexer)
     parser = TinyParser(token_stream)
 
+    listener = Listener()
+
     tree = parser.program()
-    errs = parser.getNumberOfSyntaxErrors()
-    #print(parser.getNumberOfSyntaxErrors())
-    #print(tree.toStringTree(recog=parser))
-    result = open("result.txt", 'w')
-    if errs != 0:
-        result.write('Not accepted')
-        print('Not accepted')
-    else:
-        result.write('Accepted')
-        print('Accepted')
-    result.close()
+    walker = ParseTreeWalker().walk(listener, tree)
+    print(listener.get_symbol_table())
 
 if __name__ == '__main__':
     main(sys.argv)
