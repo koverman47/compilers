@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 class Scope():
 
     def __init__(self, name, parent=None):

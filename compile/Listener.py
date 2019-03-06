@@ -74,12 +74,3 @@ class Listener(TinyListener):
     def get_symbol_table(self):
         return self.symbolTables
 
-    def print_symbol_tables(self):
-        for t in self.symbolTables:
-            print("Symbol table %s" % t.name)
-            for k, v in t.symbols.items():
-                if v[1]:
-                    print("name %s type %s value %s" % (k, v[0], v[1]))
-                else:
-                    print("name, %s type %s" % (k, v[0]))
-
