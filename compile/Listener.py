@@ -1,9 +1,10 @@
-from antlr4 import *
+from TinyListener import TinyListener
 
-class Listener(ParseTreeListener):
+class Listener(TinyListener):
     symbol_t = {}
 
     def enterEveryRule(self,ctx:ParserRuleContext):
+
         #Need to use the parser rule context here
 
         pass
