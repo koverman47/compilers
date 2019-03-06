@@ -3,7 +3,6 @@
 .idea/
 bin/
 lib/
-*.out
 *.interp
 *.tokens
 *.zip
