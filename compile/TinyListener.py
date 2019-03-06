@@ -19,7 +19,8 @@ class TinyListener(ParseTreeListener):
 
     # Enter a parse tree produced by TinyParser#program.
     def enterProgram(self, ctx:TinyParser.ProgramContext):
-        pass
+        for child in ctx.getChildren():
+            print(child.getText() + " ")
 
     # Exit a parse tree produced by TinyParser#program.
     def exitProgram(self, ctx:TinyParser.ProgramContext):
