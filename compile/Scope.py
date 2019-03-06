@@ -1,5 +1,7 @@
-class Scope:
-    def __init__(self, name, parentScope = None):
+class Scope():
+
+    def __init__(name, parent=None):
         self.name = name
-        symbols = {}
-        self.parentScope = parentScope
+        self.parent = parent
+        self.symbols = {}
+
