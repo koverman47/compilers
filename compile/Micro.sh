@@ -7,5 +7,5 @@ cd antlr-env/lib/
 cd ../../
 eval 'wget https://www.antlr.org/download/antlr-4.7.2-complete.jar'
 
-eval 'java -jar /antlr-env/bin/lib/antlr-4.7.2-complete.jar -Dlanguage=Python3 Tiny.g4'
+eval 'java -jar /antlr-env/bin/antlr-4.7.2-complete.jar -Dlanguage=Python3 Tiny.g4'
 ./Scanner.py $1
