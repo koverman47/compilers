@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from TinyListener import TinyListener
 from TinyParser import TinyParser
 from Scope import Scope
