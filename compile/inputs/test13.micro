@@ -1,8 +1,11 @@
-PROGRAM test BEGIN
+PROGRAM test
+BEGIN
+	INT i;
 	INT a,b,c;
 	FLOAT x,y,z;
-	VOID h,j,k;
-	
+	INT h;
+	STRING s1 := "string";
+		
 	FUNCTION INT function1()
 	BEGIN
 	RETURN 35*45;
@@ -19,4 +22,5 @@ PROGRAM test BEGIN
 	c := function2();
 	c:=a+b;
 	END
+
 END
