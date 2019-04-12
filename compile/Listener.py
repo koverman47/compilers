@@ -15,6 +15,7 @@ class Listener(TinyListener):
         self.writeVar = True
         self.registers = ["T1"]
         self.register_counter = 2
+        self.assembly_code = ''
 
     def enterVar_decl(self, ctx:TinyParser.Var_declContext):
         self.writeVar = True
