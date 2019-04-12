@@ -110,3 +110,11 @@ class Listener(TinyListener):
     # Exit a parse tree produced by TinyParser#mulop.
     def exitMulop(self, ctx:TinyParser.MulopContext):
         pass
+
+    # Enter a parse tree produced by TinyParser#addop.
+    def enterAddop(self, ctx:TinyParser.AddopContext):
+        pass
+
+    # Exit a parse tree produced by TinyParser#addop.
+    def exitAddop(self, ctx:TinyParser.AddopContext):
+        pass
