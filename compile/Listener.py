@@ -87,12 +87,17 @@ class Listener(TinyListener):
     def get_symbol_table(self):
         return self.symbolTables
 
+    def getTypeByKey(self, table, key):
+        if key in table.symbols:
+            return table.symbols[key][0]
+        elif not self.table.parent:
+            pass
+        return self.getTypeByKey(table.parent, key)
+
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
         ct = list(ctx.getChildren())
-        print(self.scope.symbols)
-        print("****")
-        t = self.scope.symbols[ct[0]][0]
+        t = self.getTypeByKey(self.scope, ct[0])
         tr = self.push()
         self.register_counter += 1
         if t == "INT":
