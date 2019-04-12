@@ -78,3 +78,35 @@ class Listener(TinyListener):
     def get_symbol_table(self):
         return self.symbolTables
 
+    # Enter a parse tree produced by TinyParser#assign_expr.
+    def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
+        pass
+
+    # Exit a parse tree produced by TinyParser#assign_expr.
+    def exitAssign_expr(self, ctx:TinyParser.Assign_exprContext):
+        pass
+
+    # Enter a parse tree produced by TinyParser#expr_list.
+    def enterExpr_list(self, ctx:TinyParser.Expr_listContext):
+        pass
+
+    # Exit a parse tree produced by TinyParser#expr_list.
+    def exitExpr_list(self, ctx:TinyParser.Expr_listContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyParser#expr_list_tail.
+    def enterExpr_list_tail(self, ctx:TinyParser.Expr_list_tailContext):
+        pass
+
+    # Exit a parse tree produced by TinyParser#expr_list_tail.
+    def exitExpr_list_tail(self, ctx:TinyParser.Expr_list_tailContext):
+        pass
+
+    # Enter a parse tree produced by TinyParser#mulop.
+    def enterMulop(self, ctx:TinyParser.MulopContext):
+        pass
+
+    # Exit a parse tree produced by TinyParser#mulop.
+    def exitMulop(self, ctx:TinyParser.MulopContext):
+        pass
