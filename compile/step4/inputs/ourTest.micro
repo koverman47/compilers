@@ -3,10 +3,12 @@ BEGIN
 
 	INT a,b,c;
 
-	a := 1;
-	b := 2;
-	c := a + b;
+	FUNCTION VOID Main()
+	BEGIN
+		a := 1;
+		b := 2;
+		c := a + b;
 	
-	WRITE(c, newline);
-	
+		WRITE(c, newline);
+	END
 END
