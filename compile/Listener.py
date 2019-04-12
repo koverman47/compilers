@@ -89,9 +89,15 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
-        print('enter Assign')
-        print(ctx.getText())
-        print()
+        ct = list(ctx.getChildren())
+        t = self.scope[ct[0]][0]
+        tr = self.push()
+        self.register_counter += 1
+        if t == "INT":
+            store = "STOREI %s %s" % (tr, ct[0])
+        elif t == "INT":
+            store = "STOREF %s %s" % (tr, ct[0])
+
     # Exit a parse tree produced by TinyParser#assign_expr.
     def exitAssign_expr(self, ctx:TinyParser.Assign_exprContext):
         print('exit assign')
