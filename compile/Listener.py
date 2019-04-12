@@ -128,7 +128,14 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#mulop.
     def enterMulop(self, ctx:TinyParser.MulopContext):
-        print('enter mul op')
+        opr = ctx.getText()
+	if (opr == '*'):
+		print('enter multiply')
+		#return mult(ctx)
+	elif (opr == '/'):
+		print('enter divide')
+		#return divi(ctx)
+        print(ctx.getText())
 
     # Exit a parse tree produced by TinyParser#mulop.
     def exitMulop(self, ctx:TinyParser.MulopContext):
@@ -136,8 +143,13 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#addop.
     def enterAddop(self, ctx:TinyParser.AddopContext):
-        print('enter add')
-        print(ctx.getText())
+	opr = ctx.getText()
+	if (opr == '+'):
+		print('enter add')
+		#return add(ctx)
+	elif (opr == '-'):
+		print('enter subtract')
+		#return sub(ctx)
 
     # Exit a parse tree produced by TinyParser#addop.
     def exitAddop(self, ctx:TinyParser.AddopContext):
