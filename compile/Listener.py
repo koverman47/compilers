@@ -13,8 +13,15 @@ class Listener(TinyListener):
         self.blockCt = 0
         self.currVarType = None
         self.writeVar = True
-        self.registers = ["T1"]
-        self.register_counter = 2
+        self.registers = []
+        self.register_counter = 1
+        self.assembly_code = []
+
+    def push(self):
+        reg = "T%d" % (self.register_counter)
+        self.registers.append(reg)
+        self.register_counter += 1
+        return reg
 
     def enterVar_decl(self, ctx:TinyParser.Var_declContext):
         self.writeVar = True
@@ -26,11 +33,13 @@ class Listener(TinyListener):
         self.currVarType = ctx.getText()
 
     def enterFunc_decl(self, ctx:TinyParser.Func_declContext):
+        print('func decl')
         children = list(ctx.getChildren())
         self.scope = Scope(children[2], self.scope)
         self.symbolTables.append(self.scope)
 
     def exitFunc_decl(self, ctx: TinyParser.Func_declContext):
+        print('exit funcl')
         self.scope = self.scope.parent
 
     def enterIf_stmt(self, ctx:TinyParser.If_stmtContext):
@@ -80,41 +89,59 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
-        pass
-
+        print('enter Assign')
+        print(ctx.getText())
+        print()
     # Exit a parse tree produced by TinyParser#assign_expr.
     def exitAssign_expr(self, ctx:TinyParser.Assign_exprContext):
-        pass
+        print('exit assign')
 
     # Enter a parse tree produced by TinyParser#expr_list.
     def enterExpr_list(self, ctx:TinyParser.Expr_listContext):
-        pass
+        print('enter expr list')
 
     # Exit a parse tree produced by TinyParser#expr_list.
     def exitExpr_list(self, ctx:TinyParser.Expr_listContext):
-        pass
+        print('exit expr list')
 
 
     # Enter a parse tree produced by TinyParser#expr_list_tail.
     def enterExpr_list_tail(self, ctx:TinyParser.Expr_list_tailContext):
-        pass
+        print('exit expr list tail')
 
     # Exit a parse tree produced by TinyParser#expr_list_tail.
     def exitExpr_list_tail(self, ctx:TinyParser.Expr_list_tailContext):
-        pass
+        print('exit expr list tail')
 
     # Enter a parse tree produced by TinyParser#mulop.
     def enterMulop(self, ctx:TinyParser.MulopContext):
-        pass
+        print('enter mul op')
 
     # Exit a parse tree produced by TinyParser#mulop.
     def exitMulop(self, ctx:TinyParser.MulopContext):
-        pass
+        print('exit mul op')
 
     # Enter a parse tree produced by TinyParser#addop.
     def enterAddop(self, ctx:TinyParser.AddopContext):
-        pass
+        print('enter add')
+        print(ctx.getText())
 
     # Exit a parse tree produced by TinyParser#addop.
     def exitAddop(self, ctx:TinyParser.AddopContext):
+        print('exit add')
+
+    # Enter a parse tree produced by TinyParser#write_stmt.
+    def enterWrite_stmt(self, ctx:TinyParser.Write_stmtContext):
+        print('enter write')
+
+    # Exit a parse tree produced by TinyParser#write_stmt.
+    def exitWrite_stmt(self, ctx:TinyParser.Write_stmtContext):
+        print('exit write')
+
+    # Enter a parse tree produced by TinyParser#read_stmt.
+    def enterRead_stmt(self, ctx:TinyParser.Read_stmtContext):
+        pass
+
+    # Exit a parse tree produced by TinyParser#read_stmt.
+    def exitRead_stmt(self, ctx:TinyParser.Read_stmtContext):
         pass

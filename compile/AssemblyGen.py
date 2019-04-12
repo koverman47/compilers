@@ -18,18 +18,8 @@ def main(argv):
 
     tree = parser.program()
     walker = ParseTreeWalker().walk(listener, tree)
-    
-    tables = listener.get_symbol_table()
 
-    for t in tables:
-        print("Symbol table %s" %  t.name)
-        for k, v in t.symbols.items():
-            if v[1]:
-                print("name %s type %s value %s" % (k, v[0], v[1]))
-            else:
-                print("name %s type %s" % (k, v[0]))
-        print("")
-
+    assembly_code = listener.assembly_code
 
 if __name__ == '__main__':
     main(sys.argv)
