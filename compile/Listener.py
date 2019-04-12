@@ -13,6 +13,8 @@ class Listener(TinyListener):
         self.blockCt = 0
         self.currVarType = None
         self.writeVar = True
+        self.registers = ["T1"]
+        self.register_counter = 2
 
     def enterVar_decl(self, ctx:TinyParser.Var_declContext):
         self.writeVar = True
