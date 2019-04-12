@@ -1,0 +1,12 @@
+PROGRAM p
+BEGIN
+
+	INT a,b,c;
+
+	a := 1;
+	b := 1;
+	c := a + b;
+	
+	WRITE(c, newline);
+	
+END
