@@ -3,11 +3,11 @@ BEGIN
 
 	FUNCTION VOID main()
 	BEGIN
-        INT a,b,c;
-        a := 1;
-        b := 1;
-        c := a + b;
-
-        WRITE(c, newline);
+		a := 8;
+		b := 1 / a + (3 * 4);
+		c := a + b;
+	
+		WRITE(c, newline);
 	END
+	
 END
