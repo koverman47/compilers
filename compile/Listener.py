@@ -96,9 +96,7 @@ class Listener(TinyListener):
         if t == "INT":
             store = "STOREI %s %s" % (tr, ct[0])
         elif t == "INT":
-            store = "STOREF %s %s" % (tr, tl)
-        self.registers.append("T" + str()
-        self.register_counter += 1
+            store = "STOREF %s %s" % (tr, ct[0])
 
     # Exit a parse tree produced by TinyParser#assign_expr.
     def exitAssign_expr(self, ctx:TinyParser.Assign_exprContext):
