@@ -88,15 +88,15 @@ class Listener(TinyListener):
         return self.symbolTables
 
     def getTypeByKey(self, table, key):
-        if key.getText() in table.symbols.keys():
-            return table.symbols[key.getText()][0]
+        if key in table.symbols.keys():
+            return table.symbols[key][0]
         elif not table.parent:
             return
         return self.getTypeByKey(table.parent, key)
 
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
-        ct = list(ctx.getChildren())
+        ct = list(ctx.getChildren())[0].getText()
         self.currVarType = self.getTypeByKey(self.scope, ct[0])
         tr = self.push()
         self.register_counter += 1
@@ -218,14 +218,13 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#expr_prefix.
     def enterExpr_prefix(self, ctx:TinyParser.Expr_prefixContext):
-        print('Prefix add op')
+        #print('Prefix add op')
         if ctx.addop():
             op = list(ctx.getChildren())[2].getText()
             result = self.registers.pop()
             rr = self.push()
             rl = self.push()
             opper = ''
-            print(op)
             if self.currVarType == 'INT':
                 if op == '+':
                     opper = 'ADDI'
@@ -234,12 +233,11 @@ class Listener(TinyListener):
             elif self.currVarType == 'FLOAT':
                 if op == '+':
                     opper = 'ADDF '
-                elif op =='-':
+                elif op == '-':
                     opper = 'SUBF'
             line = "%s %s %s %s" % (opper, rl, rr, result)
             print(line)
             self.assembly_code.append(line)
-        pass
 
 
 
