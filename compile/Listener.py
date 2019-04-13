@@ -188,7 +188,7 @@ class Listener(TinyListener):
     def enterFactor_prefix(self, ctx:TinyParser.Factor_prefixContext):
         if not ctx.mulop():
             return
-        op = list(ctx.getChildren())[2].getText()
+        op = list(ctx.getChildren())[2]
         rf = self.registers.pop()
         rr = self.push()
         rl = self.push()
