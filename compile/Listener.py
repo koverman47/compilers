@@ -5,8 +5,9 @@ from TinyParser import TinyParser
 from Scope import Scope
 import sys
 
+
 class Listener(TinyListener):
-    
+
     def __init__(self):
         self.scope = Scope("GLOBAL")
         self.symbolTables = [self.scope]
@@ -23,55 +24,55 @@ class Listener(TinyListener):
         self.register_counter += 1
         return reg
 
-    def enterVar_decl(self, ctx:TinyParser.Var_declContext):
+    def enterVar_decl(self, ctx: TinyParser.Var_declContext):
         self.writeVar = True
 
-    def exitVar_decl(self, ctx:TinyParser.Var_declContext):
+    def exitVar_decl(self, ctx: TinyParser.Var_declContext):
         self.writeVar = False
 
-    def enterVar_type(self, ctx:TinyParser.Var_typeContext):
+    def enterVar_type(self, ctx: TinyParser.Var_typeContext):
         self.currVarType = ctx.getText()
 
-    def enterFunc_decl(self, ctx:TinyParser.Func_declContext):
-        #print('func decl')
+    def enterFunc_decl(self, ctx: TinyParser.Func_declContext):
+        # print('func decl')
         children = list(ctx.getChildren())
         self.scope = Scope(children[2], self.scope)
         self.symbolTables.append(self.scope)
 
     def exitFunc_decl(self, ctx: TinyParser.Func_declContext):
-        #print('exit funcl')
+        # print('exit funcl')
         self.scope = self.scope.parent
 
-    def enterIf_stmt(self, ctx:TinyParser.If_stmtContext):
+    def enterIf_stmt(self, ctx: TinyParser.If_stmtContext):
         self.blockCt += 1
         self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
         self.symbolTables.append(self.scope)
 
-    def exitIf_stmt(self, ctx:TinyParser.If_stmtContext):
+    def exitIf_stmt(self, ctx: TinyParser.If_stmtContext):
         self.scope = self.scope.parent
 
-    def enterElse_part(self, ctx:TinyParser.Else_partContext):
+    def enterElse_part(self, ctx: TinyParser.Else_partContext):
         if len(ctx.getText()) > 0:
             self.blockCt += 1
             self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
             self.symbolTables.append(self.scope)
-    
-    def exitElse_part(self, ctx:TinyParser.Else_partContext):
+
+    def exitElse_part(self, ctx: TinyParser.Else_partContext):
         self.scope = self.scope.parent
 
-    def enterWhile_stmt(self, ctx:TinyParser.While_stmtContext):
+    def enterWhile_stmt(self, ctx: TinyParser.While_stmtContext):
         self.blockCt += 1
         self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
         self.symbolTables.append(self.scope)
 
-    def exitWhile_stmt(self, ctx:TinyParser.While_stmtContext):
+    def exitWhile_stmt(self, ctx: TinyParser.While_stmtContext):
         self.scope = self.scope.parent
 
-    def enterString_decl(self, ctx:TinyParser.String_declContext):
+    def enterString_decl(self, ctx: TinyParser.String_declContext):
         children = list(ctx.getChildren())
         self.scope.symbols[children[1].getText()] = (children[0].getText(), children[3].getText())
 
-    def enterId_list(self, ctx:TinyParser.Id_listContext):
+    def enterId_list(self, ctx: TinyParser.Id_listContext):
         values = ctx.getText().split(",")
         if self.writeVar:
             for v in values:
@@ -80,7 +81,7 @@ class Listener(TinyListener):
                     sys.exit(0)
                 self.scope.symbols[v] = (self.currVarType, None)
 
-    def enterParam_decl(self, ctx:TinyParser.Param_declContext):
+    def enterParam_decl(self, ctx: TinyParser.Param_declContext):
         ct = list(ctx.getChildren())
         self.scope.symbols[ct[1].getText()] = (ct[0].getText(), None)
 
@@ -106,86 +107,85 @@ class Listener(TinyListener):
             self.assembly_code[-1].append("STOREF %s %s" % (tr, ct[0]))
 
     # Exit a parse tree produced by TinyParser#assign_expr.
-    def exitAssign_expr(self, ctx:TinyParser.Assign_exprContext):
-        #print('exit assign')
+    def exitAssign_expr(self, ctx: TinyParser.Assign_exprContext):
+        # print('exit assign')
         pass
 
     # Enter a parse tree produced by TinyParser#expr_list.
-    def enterExpr_list(self, ctx:TinyParser.Expr_listContext):
-        #print('enter expr list')
+    def enterExpr_list(self, ctx: TinyParser.Expr_listContext):
+        # print('enter expr list')
         pass
 
     # Exit a parse tree produced by TinyParser#expr_list.
-    def exitExpr_list(self, ctx:TinyParser.Expr_listContext):
-        #print('exit expr list')
+    def exitExpr_list(self, ctx: TinyParser.Expr_listContext):
+        # print('exit expr list')
         pass
 
-
     # Enter a parse tree produced by TinyParser#expr_list_tail.
-    def enterExpr_list_tail(self, ctx:TinyParser.Expr_list_tailContext):
-        #print('exit expr list tail')
+    def enterExpr_list_tail(self, ctx: TinyParser.Expr_list_tailContext):
+        # print('exit expr list tail')
         pass
 
     # Exit a parse tree produced by TinyParser#expr_list_tail.
-    def exitExpr_list_tail(self, ctx:TinyParser.Expr_list_tailContext):
-        #print('exit expr list tail')
+    def exitExpr_list_tail(self, ctx: TinyParser.Expr_list_tailContext):
+        # print('exit expr list tail')
         pass
 
     # Enter a parse tree produced by TinyParser#mulop.
-    def enterMulop(self, ctx:TinyParser.MulopContext):
+    def enterMulop(self, ctx: TinyParser.MulopContext):
         opr = ctx.getText()
         if (opr == '*'):
-            #print('enter multiply')
-            #return mult(ctx)
+            # print('enter multiply')
+            # return mult(ctx)
             pass
         elif (opr == '/'):
-            #print('enter divide')
-	    #return divi(ctx)
+            # print('enter divide')
+            # return divi(ctx)
             pass
-        #print(ctx.getText())
+        # print(ctx.getText())
         pass
 
     # Exit a parse tree produced by TinyParser#mulop.
-    def exitMulop(self, ctx:TinyParser.MulopContext):
-        #print('exit mul op')
+    def exitMulop(self, ctx: TinyParser.MulopContext):
+        # print('exit mul op')
         pass
 
     # Enter a parse tree produced by TinyParser#addop.
-    def enterAddop(self, ctx:TinyParser.AddopContext):
+    def enterAddop(self, ctx: TinyParser.AddopContext):
         opr = ctx.getText()
         if (opr == '+'):
-            #print('enter add')
-            #return add(ctx)
+            # print('enter add')
+            # return add(ctx)
             pass
         elif (opr == '-'):
-            #print('enter subtract')
-            #return sub(ctx)
+            # print('enter subtract')
+            # return sub(ctx)
             pass
 
     # Exit a parse tree produced by TinyParser#addop.
-    def exitAddop(self, ctx:TinyParser.AddopContext):
-        #print('exit add')
+    def exitAddop(self, ctx: TinyParser.AddopContext):
+        # print('exit add')
         pass
 
     # Enter a parse tree produced by TinyParser#write_stmt.
-    def enterWrite_stmt(self, ctx:TinyParser.Write_stmtContext):
-        #print('enter write')
+    def enterWrite_stmt(self, ctx: TinyParser.Write_stmtContext):
+        # print('enter write')
         pass
 
     # Exit a parse tree produced by TinyParser#write_stmt.
-    def exitWrite_stmt(self, ctx:TinyParser.Write_stmtContext):
-        #print('exit write')
+    def exitWrite_stmt(self, ctx: TinyParser.Write_stmtContext):
+        # print('exit write')
         pass
 
     # Enter a parse tree produced by TinyParser#read_stmt.
-    def enterRead_stmt(self, ctx:TinyParser.Read_stmtContext):
+    def enterRead_stmt(self, ctx: TinyParser.Read_stmtContext):
         pass
 
     # Exit a parse tree produced by TinyParser#read_stmt.
-    def exitRead_stmt(self, ctx:TinyParser.Read_stmtContext):
+    def exitRead_stmt(self, ctx: TinyParser.Read_stmtContext):
         pass
 
-    def enterFactor_prefix(self, ctx:TinyParser.Factor_prefixContext):
+    def enterFactor_prefix(self, ctx: TinyParser.Factor_prefixContext):
         if not ctx.mulop():
             return
         op = list(ctx.getChildren())[2].getText()
@@ -205,7 +205,7 @@ class Listener(TinyListener):
                 code = "DIVF %s %s %s" % (rl, rr, rf)
         self.assembly_code[-1].append(code)
 
-    def enterPrimary(self, ctx:TinyParser.PrimaryContext):
+    def enterPrimary(self, ctx: TinyParser.PrimaryContext):
         result = self.registers.pop()
         line = ''
         if ctx.ID():
@@ -217,8 +217,8 @@ class Listener(TinyListener):
         self.assembly_code[-1].append(line)
 
     # Enter a parse tree produced by TinyParser#expr_prefix.
-    def enterExpr_prefix(self, ctx:TinyParser.Expr_prefixContext):
-        #print('Prefix add op')
+    def enterExpr_prefix(self, ctx: TinyParser.Expr_prefixContext):
+        # print('Prefix add op')
         if ctx.addop():
             op = list(ctx.getChildren())[2].getText()
             result = self.registers.pop()
@@ -236,5 +236,4 @@ class Listener(TinyListener):
                 elif op == '-':
                     opper = 'SUBF'
             self.assembly_code[-1].append("%s %s %s %s" % (opper, rl, rr, result))
-
 
