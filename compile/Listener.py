@@ -96,14 +96,14 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
+        self.assembly_code.append([])
         ct = list(ctx.getChildren())[0].getText()
         self.currVarType = self.getTypeByKey(self.scope, ct[0])
         tr = self.push()
-        self.register_counter += 1
         if self.currVarType == "INT":
-            self.assembly_code.append("STOREI %s %s" % (tr, ct[0]))
+            self.assembly_code[-1].append("STOREI %s %s" % (tr, ct[0]))
         elif self.currVarType == "FLOAT":
-            self.assembly_code.append("STOREF %s %s" % (tr, ct[0]))
+            self.assembly_code[-1].append("STOREF %s %s" % (tr, ct[0]))
 
     # Exit a parse tree produced by TinyParser#assign_expr.
     def exitAssign_expr(self, ctx:TinyParser.Assign_exprContext):
@@ -188,7 +188,7 @@ class Listener(TinyListener):
     def enterFactor_prefix(self, ctx:TinyParser.Factor_prefixContext):
         if not ctx.mulop():
             return
-        op = list(ctx.getChildren())[2]
+        op = list(ctx.getChildren())[2].getText()
         rf = self.registers.pop()
         rr = self.push()
         rl = self.push()
@@ -203,7 +203,7 @@ class Listener(TinyListener):
                 code = "MULF %s %s %s" % (rl, rr, rf)
             elif op == "/":
                 code = "DIVF %s %s %s" % (rl, rr, rf)
-        self.assembly_code.append(code)
+        self.assembly_code[-1].append(code)
 
     def enterPrimary(self, ctx:TinyParser.PrimaryContext):
         result = self.registers.pop()
@@ -214,7 +214,7 @@ class Listener(TinyListener):
             line = "move %s %s" % (ctx.INTLITERAL(), result)
         elif ctx.FLOATLITERAL():
             line = "move %s %s" % (ctx.FLOATLITERAL(), result)
-        self.assembly_code.append(line)
+        self.assembly_code[-1].append(line)
 
     # Enter a parse tree produced by TinyParser#expr_prefix.
     def enterExpr_prefix(self, ctx:TinyParser.Expr_prefixContext):
@@ -235,7 +235,6 @@ class Listener(TinyListener):
                     opper = 'ADDF '
                 elif op == '-':
                     opper = 'SUBF'
-            print(opper)
-            self.assembly_code.append("%s %s %s %s" % (opper, rl, rr, result))
+            self.assembly_code[-1].append("%s %s %s %s" % (opper, rl, rr, result))
 
 
