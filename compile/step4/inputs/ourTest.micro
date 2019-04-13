@@ -4,8 +4,9 @@ BEGIN
 	FUNCTION VOID main()
 	BEGIN
 		a := 8;
-		b := 1 / a + (3 * 4);
-		c := a + b;
+		--b := 1 / a + (3 * 4);
+		--c := a + b;
+		c := a + 5;
 	
 		WRITE(c, newline);
 	END

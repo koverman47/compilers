@@ -191,6 +191,30 @@ class Listener(TinyListener):
         elif ctx.INTLITERAL():
             pass
         elif ctx.FLOATLITERAL():
-            pass 
+            pass
+
+    # Enter a parse tree produced by TinyParser#expr_prefix.
+    def enterExpr_prefix(self, ctx:TinyParser.Expr_prefixContext):
+        print('Prefix add op')
+        if ctx.addop():
+            op = ctx.getChildren()[2].getText()
+            result = self.registers.pop()
+            rr = self.push()
+            rl = self.push()
+            opper = ''
+            if self.currVarType == 'INT':
+                if op == '+':
+                    opper = 'ADDI '
+                elif op =='-':
+                    opper = 'SUBI'
+            elif self.currVarType == 'FLOAT':
+                if op == '+':
+                    opper = 'ADDF '
+                elif op =='-':
+                    opper = 'SUBF'
+            self.assembly_code.append("%s %s %s %s" % (opper, rl, rr, result))
+        pass
+
+
 
 
