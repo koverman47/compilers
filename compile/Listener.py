@@ -186,6 +186,8 @@ class Listener(TinyListener):
         pass
 
     def enterFactor_prefix(self, ctx:TinyParser.Factor_prefixContext):
+        if not ctx.mulop():
+            return
         op = list(ctx.getChildren())[2]
         rf = self.registers.pop()
         rr = self.push()
@@ -209,16 +211,16 @@ class Listener(TinyListener):
         if ctx.ID():
             line = "LOAD %s %s" % (ctx.ID(), result)
         elif ctx.INTLITERAL():
-            line = "move %s %s" % (ctx.INTLITERAL())
+            line = "move %s %s" % (ctx.INTLITERAL(), result)
         elif ctx.FLOATLITERAL():
-            line = "move %s %s" % (ctx.FLOATLITERAL())
+            line = "move %s %s" % (ctx.FLOATLITERAL(), result)
         self.assembly_code.append(line)
 
     # Enter a parse tree produced by TinyParser#expr_prefix.
     def enterExpr_prefix(self, ctx:TinyParser.Expr_prefixContext):
         print('Prefix add op')
         if ctx.addop():
-            op = ctx.getChildren()[2].getText()
+            op = list(ctx.getChildren())[2].getText()
             result = self.registers.pop()
             rr = self.push()
             rl = self.push()
