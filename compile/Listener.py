@@ -97,13 +97,13 @@ class Listener(TinyListener):
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
         ct = list(ctx.getChildren())
-        t = self.getTypeByKey(self.scope, ct[0])
+        self.currVarType = self.getTypeByKey(self.scope, ct[0])
         tr = self.push()
         self.register_counter += 1
-        if t == "INT":
-            store = "STOREI %s %s" % (tr, ct[0])
-        elif t == "INT":
-            store = "STOREF %s %s" % (tr, ct[0])
+        if self.currVarType == "INT":
+            self.assembly_code.append("STOREI %s %s" % (tr, ct[0]))
+        elif self.currVarType == "FLOAT":
+            self.assembly_code.append("STOREF %s %s" % (tr, ct[0]))
 
     # Exit a parse tree produced by TinyParser#assign_expr.
     def exitAssign_expr(self, ctx:TinyParser.Assign_exprContext):
@@ -185,6 +185,24 @@ class Listener(TinyListener):
     def exitRead_stmt(self, ctx:TinyParser.Read_stmtContext):
         pass
 
+    def enterFactor_prefix(self, ctx:TinyParser.Factor_prefixContext):
+        op = list(ctx.getChildren())[2]
+        rf = self.registers.pop()
+        rr = self.push()
+        rl = self.push()
+        code = ""
+        if self.currVarType == "INT":
+            if op == "*":
+                code = "MULI %s %s %s" % (rl, rr, rf)
+            elif op == "/":
+                code = "DIVI %s %s %s" % (rl, rr, rf)
+        elif self.currVarType == "FLOAT":
+            if op == "*":
+                code = "MULF %s %s %s" % (rl, rr, rf)
+            elif op == "/":
+                code = "DIVF %s %s %s" % (rl, rr, rf)
+        self.assembly_code.append(code)
+
     def enterPrimary(self, ctx:TinyParser.PrimaryContext):
         if ctx.ID():
             pass
@@ -214,7 +232,6 @@ class Listener(TinyListener):
                     opper = 'SUBF'
             self.assembly_code.append("%s %s %s %s" % (opper, rl, rr, result))
         pass
-
 
 
 
