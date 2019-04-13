@@ -20,6 +20,7 @@ def main(argv):
     walker = ParseTreeWalker().walk(listener, tree)
 
     assembly_code = listener.assembly_code
+    print(assembly_code)
 
 if __name__ == '__main__':
     main(sys.argv)

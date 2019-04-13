@@ -88,8 +88,8 @@ class Listener(TinyListener):
         return self.symbolTables
 
     def getTypeByKey(self, table, key):
-        if key in table.symbols:
-            return table.symbols[key][0]
+        if key.getText() in table.symbols.keys():
+            return table.symbols[key.getText()][0]
         elif not table.parent:
             return
         return self.getTypeByKey(table.parent, key)
@@ -188,7 +188,7 @@ class Listener(TinyListener):
     def enterFactor_prefix(self, ctx:TinyParser.Factor_prefixContext):
         if not ctx.mulop():
             return
-        op = list(ctx.getChildren())[2]
+        op = list(ctx.getChildren())[2].getText()
         rf = self.registers.pop()
         rr = self.push()
         rl = self.push()
@@ -225,9 +225,10 @@ class Listener(TinyListener):
             rr = self.push()
             rl = self.push()
             opper = ''
+            print(op)
             if self.currVarType == 'INT':
                 if op == '+':
-                    opper = 'ADDI '
+                    opper = 'ADDI'
                 elif op =='-':
                     opper = 'SUBI'
             elif self.currVarType == 'FLOAT':
@@ -235,7 +236,9 @@ class Listener(TinyListener):
                     opper = 'ADDF '
                 elif op =='-':
                     opper = 'SUBF'
-            self.assembly_code.append("%s %s %s %s" % (opper, rl, rr, result))
+            line = "%s %s %s %s" % (opper, rl, rr, result)
+            print(line)
+            self.assembly_code.append(line)
         pass
 
 
