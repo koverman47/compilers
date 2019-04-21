@@ -3,6 +3,7 @@
 from TinyListener import TinyListener
 from TinyParser import TinyParser
 from Scope import Scope
+
 import sys
 
 
@@ -58,6 +59,8 @@ class Listener(TinyListener):
     def enterIf_stmt(self, ctx: TinyParser.If_stmtContext):
         self.blockCt += 1
         self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
+        # Labels for control statements
+        label = "label block%d" % (self.blockCt)
         self.symbolTables.append(self.scope)
 
     def exitIf_stmt(self, ctx: TinyParser.If_stmtContext):
@@ -67,6 +70,8 @@ class Listener(TinyListener):
         if len(ctx.getText()) > 0:
             self.blockCt += 1
             self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
+            # Labels for control statements
+            label = "label block%d" % (self.blockCt)
             self.symbolTables.append(self.scope)
 
     def exitElse_part(self, ctx: TinyParser.Else_partContext):
@@ -75,6 +80,8 @@ class Listener(TinyListener):
     def enterWhile_stmt(self, ctx: TinyParser.While_stmtContext):
         self.blockCt += 1
         self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
+        # Labels for control statements
+        label = "label block%d" % (self.blockCt)
         self.symbolTables.append(self.scope)
 
     def exitWhile_stmt(self, ctx: TinyParser.While_stmtContext):
@@ -218,14 +225,14 @@ class Listener(TinyListener):
         code = ""
         if self.currVarType == "INT":
             if op == "*":
-                code = "MULI %s %s %s" % (rl, rr, rf)
+                code = "muli %s %s %s" % (rl, rr, rf)
             elif op == "/":
-                code = "DIVI %s %s %s" % (rl, rr, rf)
+                code = "muli %s %s %s" % (rl, rr, rf)
         elif self.currVarType == "FLOAT":
             if op == "*":
-                code = "MULF %s %s %s" % (rl, rr, rf)
+                code = "mulr %s %s %s" % (rl, rr, rf)
             elif op == "/":
-                code = "DIVF %s %s %s" % (rl, rr, rf)
+                code = "divr %s %s %s" % (rl, rr, rf)
         self.assembly_code[-1].append(code)
 
     def enterPrimary(self, ctx: TinyParser.PrimaryContext):
@@ -250,13 +257,13 @@ class Listener(TinyListener):
             opper = ''
             if self.currVarType == 'INT':
                 if op == '+':
-                    opper = 'ADDI'
+                    opper = 'addi'
                 elif op == '-':
-                    opper = 'SUBI'
+                    opper = 'subi'
             elif self.currVarType == 'FLOAT':
                 if op == '+':
-                    opper = 'ADDF'
+                    opper = 'addr'
                 elif op == '-':
-                    opper = 'SUBF'
+                    opper = 'subr'
             self.assembly_code[-1].append("%s %s %s %s" % (opper, rl, rr, result))
 
