@@ -14,6 +14,7 @@ class Listener(TinyListener):
         self.blockCt = 0
         self.currVarType = None
         self.writeVar = True
+        self.readFlag = False
         self.registers = []
         self.register_counter = 1
         self.assembly_code = []
@@ -33,7 +34,7 @@ class Listener(TinyListener):
         elif not table.parent:
             return
         return self.getTypeByKey(table.parent, key)
-    
+
     def enterVar_decl(self, ctx: TinyParser.Var_declContext):
         self.writeVar = True
 
@@ -84,6 +85,17 @@ class Listener(TinyListener):
 
     def enterId_list(self, ctx: TinyParser.Id_listContext):
         values = ctx.getText().split(",")
+
+        if self.readFlag:
+            lineBlock = []
+            for id in values:
+                type = self.getTypeByKey(self.scope, id)
+                if type == "INT":
+                    line = "READI %s" % (id)
+                elif type == "FLOAT":
+                    line = "READF %s" % (id)
+                lineBlock.append(line)
+            self.assembly_code.append(lineBlock)
         if self.writeVar:
             for v in values:
                 if v in self.scope.symbols:
@@ -94,8 +106,6 @@ class Listener(TinyListener):
     def enterParam_decl(self, ctx: TinyParser.Param_declContext):
         ct = list(ctx.getChildren())
         self.scope.symbols[ct[1].getText()] = (ct[0].getText(), None)
-
-
 
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
@@ -181,11 +191,11 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#read_stmt.
     def enterRead_stmt(self, ctx: TinyParser.Read_stmtContext):
-        pass
+        self.readFlag = True
 
     # Exit a parse tree produced by TinyParser#read_stmt.
     def exitRead_stmt(self, ctx: TinyParser.Read_stmtContext):
-        pass
+        self.readFlag = False
 
     def enterFactor_prefix(self, ctx: TinyParser.Factor_prefixContext):
         if not ctx.mulop():
