@@ -250,12 +250,12 @@ class Listener(TinyListener):
             opper = ''
             if self.currVarType == 'INT':
                 if op == '+':
-                    opper = 'ADDI '
+                    opper = 'ADDI'
                 elif op == '-':
                     opper = 'SUBI'
             elif self.currVarType == 'FLOAT':
                 if op == '+':
-                    opper = 'ADDF '
+                    opper = 'ADDF'
                 elif op == '-':
                     opper = 'SUBF'
             self.assembly_code[-1].append("%s %s %s %s" % (opper, rl, rr, result))
