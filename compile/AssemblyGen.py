@@ -4,6 +4,8 @@ from antlr4 import *
 from Listener import Listener
 from TinyLexer import TinyLexer
 from TinyParser import TinyParser
+from Three2Two import convert
+
 import sys
 
 
@@ -19,10 +21,14 @@ def main(argv):
     tree = parser.program()
     walker = ParseTreeWalker().walk(listener, tree)
 
+    lines = []
     assembly_code = listener.assembly_code
     for i in range(len(assembly_code)):
         while assembly_code[i]:
-            print(assembly_code[i].pop())
+            line = assembly_code[i].pop()
+            lines.append(line)
+    convert(lines)
+
 
 if __name__ == '__main__':
     main(sys.argv)
