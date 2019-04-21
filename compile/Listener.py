@@ -14,6 +14,7 @@ class Listener(TinyListener):
         self.blockCt = 0
         self.currVarType = None
         self.writeVar = True
+        self.writeFlag = False
         self.registers = []
         self.register_counter = 1
         self.assembly_code = []
@@ -71,11 +72,27 @@ class Listener(TinyListener):
     def enterString_decl(self, ctx: TinyParser.String_declContext):
         children = list(ctx.getChildren())
         self.scope.symbols[children[1].getText()] = (children[0].getText(), children[3].getText())
+        self.assembly_code.append(["str %s %s" % (children[1].getText(), children[3].getText())])
 
     def enterId_list(self, ctx: TinyParser.Id_listContext):
         values = ctx.getText().split(",")
-        if self.writeVar:
+        if self.writeFlag:
+            self.assembly_code.append([])
             for v in values:
+                self.currVarType = self.getTypeByKey(self.scope, v)
+                if self.currVarType == "INT":
+                    self.assembly_code[-1].append("WRITEI %s" % v)
+                elif self.currVarType == "FALSE":
+                    self.assembly_code[-1].append("WRITEF %s" % v)
+                elif self.currVarType == "STRING":
+                    self.assembly_code[-1].append("WRITES %s" % v)
+        if self.writeVar:
+            self.assembly_code.append([])
+            for v in values:
+                if self.currVarType == "INT":
+                    self.assembly_code[-1].append("var %s" % v)
+                elif self.currVarType == "FLOAT":
+                    self.assembly_code[-1].append("var %s" % v)
                 if v in self.scope.symbols:
                     print("DECLARATION ERROR %s" % v)
                     sys.exit(0)
@@ -169,13 +186,11 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#write_stmt.
     def enterWrite_stmt(self, ctx: TinyParser.Write_stmtContext):
-        # print('enter write')
-        pass
+        self.writeFlag = True
 
     # Exit a parse tree produced by TinyParser#write_stmt.
     def exitWrite_stmt(self, ctx: TinyParser.Write_stmtContext):
-        # print('exit write')
-        pass
+        self.writeFlag = False
 
     # Enter a parse tree produced by TinyParser#read_stmt.
     def enterRead_stmt(self, ctx: TinyParser.Read_stmtContext):
