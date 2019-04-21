@@ -91,9 +91,9 @@ class Listener(TinyListener):
             for id in values:
                 type = self.getTypeByKey(self.scope, id)
                 if type == "INT":
-                    line = "READI %s" % (id)
+                    line = "sys readi %s" % (id)
                 elif type == "FLOAT":
-                    line = "READF %s" % (id)
+                    line = "sys readf %s" % (id)
                 lineBlock.append(line)
             self.assembly_code.append(lineBlock)
         if self.writeVar:
@@ -113,10 +113,7 @@ class Listener(TinyListener):
         ct = list(ctx.getChildren())[0].getText()
         self.currVarType = self.getTypeByKey(self.scope, ct[0])
         tr = self.push()
-        if self.currVarType == "INT":
-            self.assembly_code[-1].append("STOREI %s %s" % (tr, ct[0]))
-        elif self.currVarType == "FLOAT":
-            self.assembly_code[-1].append("STOREF %s %s" % (tr, ct[0]))
+        self.assembly_code[-1].append("move %s %s" % (tr, ct[0]))
 
     # Exit a parse tree produced by TinyParser#assign_expr.
     def exitAssign_expr(self, ctx: TinyParser.Assign_exprContext):
@@ -221,7 +218,7 @@ class Listener(TinyListener):
         result = self.registers.pop()
         line = ''
         if ctx.ID():
-            line = "LOAD %s %s" % (ctx.ID(), result)
+            line = "move %s %s" % (ctx.ID(), result)
         elif ctx.INTLITERAL():
             line = "move %s %s" % (ctx.INTLITERAL(), result)
         elif ctx.FLOATLITERAL():
