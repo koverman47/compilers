@@ -15,6 +15,7 @@ class Listener(TinyListener):
         self.currVarType = None
         self.writeVar = True
         self.writeFlag = False
+        self.readFlag = False
         self.registers = []
         self.register_counter = 1
         self.assembly_code = []
@@ -34,7 +35,7 @@ class Listener(TinyListener):
         elif not table.parent:
             return
         return self.getTypeByKey(table.parent, key)
-    
+
     def enterVar_decl(self, ctx: TinyParser.Var_declContext):
         self.writeVar = True
 
@@ -96,6 +97,16 @@ class Listener(TinyListener):
                     self.assembly_code[-1].append("sys writef %s" % v)
                 elif self.currVarType == "STRING":
                     self.assembly_code[-1].append("sys writes %s" % v)
+        if self.readFlag:
+            lineBlock = []
+            for id in values:
+                type = self.getTypeByKey(self.scope, id)
+                if type == "INT":
+                    line = "sys readi %s" % (id)
+                elif type == "FLOAT":
+                    line = "sys readf %s" % (id)
+                lineBlock.append(line)
+            self.assembly_code.append(lineBlock)
         if self.writeVar:
             self.assembly_code.append([])
             for v in values:
@@ -112,18 +123,13 @@ class Listener(TinyListener):
         ct = list(ctx.getChildren())
         self.scope.symbols[ct[1].getText()] = (ct[0].getText(), None)
 
-
-
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
         self.assembly_code.append([])
         ct = list(ctx.getChildren())[0].getText()
         self.currVarType = self.getTypeByKey(self.scope, ct[0])
         tr = self.push()
-        if self.currVarType == "INT":
-            self.assembly_code[-1].append("STOREI %s %s" % (tr, ct[0]))
-        elif self.currVarType == "FLOAT":
-            self.assembly_code[-1].append("STOREF %s %s" % (tr, ct[0]))
+        self.assembly_code[-1].append("move %s %s" % (tr, ct[0]))
 
     # Exit a parse tree produced by TinyParser#assign_expr.
     def exitAssign_expr(self, ctx: TinyParser.Assign_exprContext):
@@ -196,11 +202,11 @@ class Listener(TinyListener):
 
     # Enter a parse tree produced by TinyParser#read_stmt.
     def enterRead_stmt(self, ctx: TinyParser.Read_stmtContext):
-        pass
+        self.readFlag = True
 
     # Exit a parse tree produced by TinyParser#read_stmt.
     def exitRead_stmt(self, ctx: TinyParser.Read_stmtContext):
-        pass
+        self.readFlag = False
 
     def enterFactor_prefix(self, ctx: TinyParser.Factor_prefixContext):
         if not ctx.mulop():
@@ -226,7 +232,7 @@ class Listener(TinyListener):
         result = self.registers.pop()
         line = ''
         if ctx.ID():
-            line = "LOAD %s %s" % (ctx.ID(), result)
+            line = "move %s %s" % (ctx.ID(), result)
         elif ctx.INTLITERAL():
             line = "move %s %s" % (ctx.INTLITERAL(), result)
         elif ctx.FLOATLITERAL():
