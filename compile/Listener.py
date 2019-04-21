@@ -25,6 +25,16 @@ class Listener(TinyListener):
         self.register_counter += 1
         return reg
 
+    def get_symbol_table(self):
+        return self.symbolTables
+
+    def getTypeByKey(self, table, key):
+        if key in table.symbols.keys():
+            return table.symbols[key][0]
+        elif not table.parent:
+            return
+        return self.getTypeByKey(table.parent, key)
+    
     def enterVar_decl(self, ctx: TinyParser.Var_declContext):
         self.writeVar = True
 
@@ -102,15 +112,7 @@ class Listener(TinyListener):
         ct = list(ctx.getChildren())
         self.scope.symbols[ct[1].getText()] = (ct[0].getText(), None)
 
-    def get_symbol_table(self):
-        return self.symbolTables
 
-    def getTypeByKey(self, table, key):
-        if key in table.symbols.keys():
-            return table.symbols[key][0]
-        elif not table.parent:
-            return
-        return self.getTypeByKey(table.parent, key)
 
     # Enter a parse tree produced by TinyParser#assign_expr.
     def enterAssign_expr(self, ctx:TinyParser.Assign_exprContext):
