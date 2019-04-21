@@ -20,7 +20,7 @@ class Listener(TinyListener):
         self.assembly_code = []
 
     def push(self):
-        reg = "T%d" % (self.register_counter)
+        reg = "r%d" % (self.register_counter)
         self.registers.append(reg)
         self.register_counter += 1
         return reg
@@ -91,11 +91,11 @@ class Listener(TinyListener):
             for v in values:
                 self.currVarType = self.getTypeByKey(self.scope, v)
                 if self.currVarType == "INT":
-                    self.assembly_code[-1].append("WRITEI %s" % v)
+                    self.assembly_code[-1].append("sys writei %s" % v)
                 elif self.currVarType == "FALSE":
-                    self.assembly_code[-1].append("WRITEF %s" % v)
+                    self.assembly_code[-1].append("sys writef %s" % v)
                 elif self.currVarType == "STRING":
-                    self.assembly_code[-1].append("WRITES %s" % v)
+                    self.assembly_code[-1].append("sys writes %s" % v)
         if self.writeVar:
             self.assembly_code.append([])
             for v in values:
