@@ -112,7 +112,7 @@ class Listener(TinyListener):
         elif con == ">=":
             comp = "jge"
         if not comp:
-            return "Shit"
+            return "oops"
         self.assembly_code.append(["%s %s" % (comp, self.labelStack[-1])])
         
 
