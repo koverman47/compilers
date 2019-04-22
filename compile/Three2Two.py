@@ -10,6 +10,7 @@ def convert(lines):
             line = lines[index].split(" ")
             n_line = lines[index + 1].split(" ")
 
+            #reg = line[3]
             reg = f_line[2]
             line = line[:-1]
             n_line[1] = reg
