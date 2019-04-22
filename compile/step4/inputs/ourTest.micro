@@ -9,7 +9,11 @@ BEGIN
 		b := 2 * a;
 		c := a + b;
 	
-		WRITE(c, newline);
+		IF (c > b)
+			WRITE(c, eol);
+		ELSE
+			WRITE(b, eol);
+		ENDIF
 	END
 	
 END

@@ -60,20 +60,32 @@ class Listener(TinyListener):
     def enterIf_stmt(self, ctx: TinyParser.If_stmtContext):
         self.blockCt += 1
         self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
-        # Labels for control statements
-        label = "label block%d" % (self.blockCt)
         self.symbolTables.append(self.scope)
+        # Labels for control statements
+        if ctx.else_part():
+            elselbl = "else%d" % self.blockCt
+            outlbl = "out%d" % (self.blockCt)
+            self.labelStack.append(outlbl)
+            self.labelStack.append(elselbl)
+        else:
+            outlbl = "out%d" % (self.blockCt)
+            self.labelStack.append(outlbl)
+
 
     def exitIf_stmt(self, ctx: TinyParser.If_stmtContext):
         self.scope = self.scope.parent
+        label = self.labelStack.pop()
+        self.assembly_code.append(["label %s" % (label)])
 
     def enterElse_part(self, ctx: TinyParser.Else_partContext):
         if len(ctx.getText()) > 0:
             self.blockCt += 1
             self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
-            # Labels for control statements
-            label = "label block%d" % (self.blockCt)
             self.symbolTables.append(self.scope)
+            # Labels for control statements
+            label = self.labelStack.pop()
+            self.assembly_code.append(["jmp %s" % (self.labelStack[-1])])
+            self.assembly_code.append(["label %s" % (label)])
 
     def exitElse_part(self, ctx: TinyParser.Else_partContext):
         self.scope = self.scope.parent
@@ -97,7 +109,9 @@ class Listener(TinyListener):
             self.assembly_code.append(["cmpi %s %s" % (rl, rr)])
         elif cType == "FLOAT":
             self.assembly_code.append(["cmpr %s %s" % (rl, rr)])
-        con = ct[1].getText()
+
+    def exitCond(self, ctx:TinyParser.CondContext):
+        con = list(ctx.getChildren())[1].getText()
         comp = None
         if con == "=":
             comp = "jeq"
@@ -114,7 +128,7 @@ class Listener(TinyListener):
         if not comp:
             return "oops"
         self.assembly_code.append(["%s %s" % (comp, self.labelStack[-1])])
-        
+
 
     def enterString_decl(self, ctx: TinyParser.String_declContext):
         children = list(ctx.getChildren())
@@ -128,11 +142,11 @@ class Listener(TinyListener):
             for v in values:
                 self.currVarType = self.getTypeByKey(self.scope, v)
                 if self.currVarType == "INT":
-                    self.assembly_code[-1].append("sys writei %s" % v)
+                    self.assembly_code.append(["sys writei %s" % v])
                 elif self.currVarType == "FALSE":
-                    self.assembly_code[-1].append("sys writef %s" % v)
+                    self.assembly_code.append(["sys writef %s" % v])
                 elif self.currVarType == "STRING":
-                    self.assembly_code[-1].append("sys writes %s" % v)
+                    self.assembly_code.append(["sys writes %s" % v])
         if self.readFlag:
             lineBlock = []
             for v in values:
