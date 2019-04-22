@@ -6,18 +6,9 @@ BEGIN
 	FUNCTION VOID main()
 	BEGIN
 		a := 1;
-		b := 2 * a;
-		c := a + b;
+		b := 2 * (a + 3);
+		c := b;
 	
-		IF (c > b)
-			WRITE(c, eol);
-		ELSE
-			WRITE(b, eol);
-		ENDIF
-
-		WHILE(a < b)
-			a := a + 1;
-		ENDWHILE
 	END
 	
 END

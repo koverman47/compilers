@@ -1,0 +1,67 @@
+var u
+var p
+var g
+var k
+var b
+var a
+str newline "\n"
+move 1 r1
+move r1 a
+move 1 r2
+move r2 b
+label block1
+move 80 r3
+move a r4
+cmpi r3 r4
+jle out1
+move 1 r5
+move b r6
+cmpi r5 r6
+jeq else2
+move a r8
+move 1 r9
+muli r9 r8
+move r8 g
+sys writei g
+sys writes newline
+label else2
+move 2 r10
+move b r11
+cmpi r10 r11
+jeq else3
+move a r13
+move 2 r14
+muli r14 r13
+move r13 p
+sys writei p
+sys writes newline
+label else3
+move 3 r15
+move b r16
+cmpi r15 r16
+jeq else4
+move a r18
+move 3 r19
+muli r19 r18
+move r18 k
+sys writei k
+sys writes newline
+jmp out4
+label else4
+move a r21
+move 4 r22
+muli r22 r21
+move r21 u
+sys writei u
+sys writes newline
+label out4
+move 1 r24
+move b r25
+addi r25 r24
+move r24 b
+move 20 r27
+move a r28
+addi r28 r27
+move r27 a
+jmp out2
+label out3
