@@ -93,14 +93,20 @@ class Listener(TinyListener):
     def enterWhile_stmt(self, ctx: TinyParser.While_stmtContext):
         self.blockCt += 1
         self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
-        # Labels for control statements
-        self.assembly_code.append(["label block%d" % (self.blockCt)])
         self.symbolTables.append(self.scope)
-        self.labelStack.push(self.blockCt)
+        # Labels for control statements
+        out = "out%d" % self.blockCt
+        repeat = "block%d" % self.blockCt
+        self.assembly_code.append(["label %s" % (repeat)])
+        self.labelStack.append(repeat)
+        self.labelStack.append(out)
 
     def exitWhile_stmt(self, ctx: TinyParser.While_stmtContext):
         self.scope = self.scope.parent
-        self.assembly_code.append(["label cont%d" % self.labelStack.pop()])
+        out = self.labelStack.pop()
+        repeat = self.labelStack.pop()
+        self.assembly_code.append(["jmp %s" % repeat])
+        self.assembly_code.append(["label %s" % out])
 
     def enterCond(self, ctx:TinyParser.CondContext):
         ct = list(ctx.getChildren())
@@ -154,7 +160,7 @@ class Listener(TinyListener):
             for v in values:
                 typ = self.getTypeByKey(self.scope, v)
                 if typ == "INT":
-                    line = "sys readi %s" % (iv)
+                    line = "sys readi %s" % (v)
                 elif typ == "FLOAT":
                     line = "sys readf %s" % (v)
                 lineBlock.append(line)

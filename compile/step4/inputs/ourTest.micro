@@ -14,6 +14,10 @@ BEGIN
 		ELSE
 			WRITE(b, eol);
 		ENDIF
+
+		WHILE(a < b)
+			a := a + 1;
+		ENDWHILE
 	END
 	
 END
