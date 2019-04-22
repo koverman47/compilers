@@ -26,8 +26,9 @@ def main(argv):
     for i in range(len(assembly_code)):
         while assembly_code[i]:
             line = assembly_code[i].pop()
+            print(line)
             lines.append(line)
-    convert(lines)
+    #convert(lines)
 
 
 if __name__ == '__main__':

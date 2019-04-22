@@ -274,7 +274,7 @@ class Listener(TinyListener):
         self.assembly_code[-1].append(code)
 
     def enterPrimary(self, ctx: TinyParser.PrimaryContext):
-        line = ''
+        line = None
         if ctx.ID():
             result = self.registers.pop()
             line = "move %s %s" % (ctx.ID(), result)
@@ -285,7 +285,8 @@ class Listener(TinyListener):
             result = self.registers.pop()
             line = "move %s %s" % (ctx.FLOATLITERAL(), result)
         
-        self.assembly_code[-1].append(line)
+        if line:
+            self.assembly_code[-1].append(line)
 
     # Enter a parse tree produced by TinyParser#expr_prefix.
     def enterExpr_prefix(self, ctx: TinyParser.Expr_prefixContext):
