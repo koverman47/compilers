@@ -82,11 +82,13 @@ class Listener(TinyListener):
         self.blockCt += 1
         self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
         # Labels for control statements
-        label = "label block%d" % (self.blockCt)
+		self.assembly_code.append(["label block%d" % (self.blockCt)])
         self.symbolTables.append(self.scope)
+		self.labelStack.push(self.blockCt)
 
     def exitWhile_stmt(self, ctx: TinyParser.While_stmtContext):
         self.scope = self.scope.parent
+		self.assembly_code.append(["label cont%d" % self.labelStack.pop()])
 
     def enterCond(self, ctx:TinyParser.CondContext):
         ct = list(ctx.getChildren())
