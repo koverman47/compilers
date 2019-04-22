@@ -8,6 +8,12 @@ BEGIN
 		a := 1;
 		b := 2 * (a + 3);
 		c := b;
+
+		IF (b != 3)
+			WRITE(a);
+		ELSE
+			WRITE(b);
+		ENDIF
 	
 	END
 	

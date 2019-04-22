@@ -19,7 +19,7 @@ for j in $OUTPUTS
                 filename=${j%.*}
                 name=${filename##*/}
                 echo "Expected output generated for $j"
-                output2="${name}_o.out"
+                output2="${name}Test_o.out"
 		if [[ $j == *"step4_testcase"* ]]
 		then
 			echo 2 4 25 17 6 32 1 4 15 4 | ./tiny $j > outtest/$output2

@@ -12,13 +12,13 @@ move r3 b
 label block1
 move 10 r4
 move i r5
-cmpi r4 r5
-jne out1
+cmpi r5 r4
+jeq out1
 sys readi p
 move 10 r6
 move p r7
-cmpi r6 r7
-jgt else2
+cmpi r7 r6
+jlt else2
 move 1 r9
 move a r10
 addi r10 r9

@@ -60,7 +60,7 @@ class Listener(TinyListener):
         self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
         self.symbolTables.append(self.scope)
         # Labels for control statements
-        if ctx.else_part():
+        if len(ctx.else_part().getText()) > 0:
             elselbl = "else%d" % self.blockCt
             outlbl = "out%d" % (self.blockCt)
             self.labelStack.append(outlbl)
@@ -76,6 +76,8 @@ class Listener(TinyListener):
 
     def enterElse_part(self, ctx: TinyParser.Else_partContext):
         self.scope = self.scope.parent
+        
+        #self.assembly_code.append()
         if len(ctx.getText()) > 0:
             self.blockCt += 1
             self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
@@ -110,8 +112,8 @@ class Listener(TinyListener):
     def enterCond(self, ctx:TinyParser.CondContext):
         ct = list(ctx.getChildren())
         cType = self.getTypeByKey(self.scope, ct[0].getText())
-        rl = self.push()
         rr = self.push()
+        rl = self.push()
         if cType == 'INT':
             self.assembly_code.append(["cmpi %s %s" % (rl, rr)])
         elif cType == "FLOAT":
@@ -121,17 +123,17 @@ class Listener(TinyListener):
         con = list(ctx.getChildren())[1].getText()
         comp = None
         if con == "=":
-            comp = "jeq"
-        elif con == "!=":
             comp = "jne"
+        elif con == "!=":
+            comp = "jeq"
         elif con == "<":
-            comp = "jlt"
-        elif con == ">":
             comp = "jgt"
+        elif con == ">":
+            comp = "jlt"
         elif con == "<=":
-            comp = "jle"
+            comp = "jgt"
         elif con == ">=":
-            comp = "jge"
+            comp = "jlt"
         if not comp:
             return "oops"
         self.assembly_code.append(["%s %s" % (comp, self.labelStack[-1])])
@@ -150,8 +152,8 @@ class Listener(TinyListener):
                 self.currVarType = self.getTypeByKey(self.scope, v)
                 if self.currVarType == "INT":
                     self.assembly_code.append(["sys writei %s" % v])
-                elif self.currVarType == "FALSE":
-                    self.assembly_code.append(["sys writef %s" % v])
+                elif self.currVarType == "FLOAT":
+                    self.assembly_code.append(["sys writer %s" % v])
                 elif self.currVarType == "STRING":
                     self.assembly_code.append(["sys writes %s" % v])
         if self.readFlag:
@@ -227,15 +229,9 @@ class Listener(TinyListener):
     def enterAddop(self, ctx: TinyParser.AddopContext):
         opr = ctx.getText()
         if (opr == '+'):
-            # return add(ctx)
             pass
         elif (opr == '-'):
-            # return sub(ctx)
             pass
-
-    # Exit a parse tree produced by TinyParser#addop.
-    def exitAddop(self, ctx: TinyParser.AddopContext):
-        pass
 
     # Enter a parse tree produced by TinyParser#write_stmt.
     def enterWrite_stmt(self, ctx: TinyParser.Write_stmtContext):
