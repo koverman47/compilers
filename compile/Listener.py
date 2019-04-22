@@ -165,8 +165,8 @@ class Listener(TinyListener):
                     line = "sys readi %s" % (v)
                 elif typ == "FLOAT":
                     line = "sys readf %s" % (v)
-                lineBlock.append(line)
-            self.assembly_code.append(lineBlock)
+                self.assembly_code.append([line])
+            #self.assembly_code.append(lineBlock)
         if self.writeVar:
             self.assembly_code.append([])
             for v in values:

@@ -28,6 +28,7 @@ def main(argv):
             line = assembly_code[i].pop()
             lines.append(line)
     convert(lines)
+    print("sys halt")
 
 
 if __name__ == '__main__':
