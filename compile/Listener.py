@@ -18,6 +18,7 @@ class Listener(TinyListener):
         self.readFlag = False
         self.registers = []
         self.register_counter = 1
+        self.labelStack = []
         self.assembly_code = []
 
     def push(self):
@@ -80,6 +81,34 @@ class Listener(TinyListener):
     def exitWhile_stmt(self, ctx: TinyParser.While_stmtContext):
         self.scope = self.scope.parent
 
+    def enterCond(self, ctx:TinyParser.CondContext):
+        ct = list(ctx.getChildren())
+        cType = self.getTypeByKey(self.scope, ct[0].getText())
+        rl = self.push()
+        rr = self.push()
+        if cType == 'INT':
+            self.assembly_code.append(["cmpi %s %s" % (rl, rr)])
+        elif cType == "FLOAT":
+            self.assembly_code.append(["cmpr %s %s" % (rl, rr)])
+        con = ct[1].getText()
+        comp = None
+        if con == "=":
+            comp = "jeq"
+        elif con == "!=":
+            comp = "jne"
+        elif con == "<":
+            comp = "jlt"
+        elif con == ">":
+            comp = "jgt"
+        elif con == "<=":
+            comp = "jle"
+        elif con == ">=":
+            comp = "jge"
+        if not comp:
+            return "Shit"
+        self.assembly_code.append(["%s %s" % (comp, self.labelStack[-1])])
+        
+
     def enterString_decl(self, ctx: TinyParser.String_declContext):
         children = list(ctx.getChildren())
         self.scope.symbols[children[1].getText()] = (children[0].getText(), children[3].getText())
@@ -99,12 +128,12 @@ class Listener(TinyListener):
                     self.assembly_code[-1].append("sys writes %s" % v)
         if self.readFlag:
             lineBlock = []
-            for id in values:
-                type = self.getTypeByKey(self.scope, id)
-                if type == "INT":
-                    line = "sys readi %s" % (id)
-                elif type == "FLOAT":
-                    line = "sys readf %s" % (id)
+            for v in values:
+                typ = self.getTypeByKey(self.scope, v)
+                if typ == "INT":
+                    line = "sys readi %s" % (iv)
+                elif typ == "FLOAT":
+                    line = "sys readf %s" % (v)
                 lineBlock.append(line)
             self.assembly_code.append(lineBlock)
         if self.writeVar:
