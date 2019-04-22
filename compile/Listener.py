@@ -79,8 +79,9 @@ class Listener(TinyListener):
         
         #self.assembly_code.append()
         if len(ctx.getText()) > 0:
+            parent = self.scope.parent
             self.blockCt += 1
-            self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
+            self.scope = Scope("BLOCK %d" % self.blockCt, parent)
             self.symbolTables.append(self.scope)
             # Labels for control statements
             label = self.labelStack.pop()
@@ -303,4 +304,5 @@ class Listener(TinyListener):
                 elif op == '-':
                     opper = 'subr'
             self.assembly_code[-1].append("%s %s %s %s" % (opper, rl, rr, result))
+
 
