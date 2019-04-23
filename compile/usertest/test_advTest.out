@@ -5,65 +5,72 @@ var tolerance
 var num
 var approx
 var newapprox
-move 0.0001 r1
-move r1 tolerance
-move 7.0 r2
-move r2 num
-move num r3
-move r3 approx
-move 0 r4
-move r4 count
-move 0.0 r5
-move r5 diff
-move 0 r6
-move r6 enough
+move 0.0001 r0
+move r0 tolerance
+move 7.0 r1
+move r1 num
+move num r2
+move r2 approx
+move 0 r3
+move r3 count
+move 0.0 r4
+move r4 diff
+move 0 r5
+move r5 enough
 label block1
-move 1 r7
-move enough r8
-cmpi r8 r7
+move 1 r6
+move enough r7
+cmpi r7 r6
 jeq out1
-move 1 r10
-move count r11
-addi r11 r10
-move r10 count
-move approx r17
-move num r18
-divr r18 r17
-move r17 r16
-addr r16 r15
+move 1 r9
+move count r10
+addi r10 r9
+move r9 r8
+move r8 count
+move approx r16
+move num r17
+divr r16 r17
 move r17 r14
-mulr r14 r13
-move r15 newapprox
-move newapprox r20
-move approx r21
-subr r21 r20
-move r20 diff
-move 0.0 r22
-move diff r23
-cmpr r23 r22
-jlt else2
-move tolerance r24
-move diff r25
-cmpr r25 r24
-jgt out3
-move 1 r26
-move r26 enough
+move approx r15
+addr r15 r14
+move r14 r12
+move 0.5 r13
+mulr r13 r12
+move r12 r11
+move r11 newapprox
+move newapprox r19
+move approx r20
+subr r19 r20
+move r20 r18
+move r18 diff
+move 0.0 r21
+move diff r22
+cmpr r22 r21
+jle else2
+move tolerance r23
+move diff r24
+cmpr r24 r23
+jge out3
+move 1 r25
+move r25 enough
 label out3
 jmp out2
 label else2
-move tolerance r29
-move 0.0 r30
-subi r30 r29
-move r29 r28
-cmpr r28 r27
-jlt out5
-move 1 r31
-move r31 enough
+move tolerance r28
+move 0.0 r29
+subi r28 r29
+move r29 r26
+move diff r27
+cmpr r27 r26
+jle out5
+move 1 r30
+move r30 enough
 label out5
 label out2
-move newapprox r32
-move r32 approx
+move newapprox r31
+move r31 approx
 jmp block1
 label out1
 sys writer approx
 sys writei count
+sys halt

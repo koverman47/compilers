@@ -18,7 +18,7 @@ class Listener(TinyListener):
         self.writeFlag = False
         self.readFlag = False
         self.registers = []
-        self.register_counter = 1
+        self.register_counter = 0
         self.labelStack = []
         self.assembly_code = []
 
@@ -79,8 +79,9 @@ class Listener(TinyListener):
         
         #self.assembly_code.append()
         if len(ctx.getText()) > 0:
+            parent = self.scope.parent
             self.blockCt += 1
-            self.scope = Scope("BLOCK %d" % self.blockCt, self.scope)
+            self.scope = Scope("BLOCK %d" % self.blockCt, parent)
             self.symbolTables.append(self.scope)
             # Labels for control statements
             label = self.labelStack.pop()
@@ -127,9 +128,9 @@ class Listener(TinyListener):
         elif con == "!=":
             comp = "jeq"
         elif con == "<":
-            comp = "jgt"
+            comp = "jge"
         elif con == ">":
-            comp = "jlt"
+            comp = "jle"
         elif con == "<=":
             comp = "jgt"
         elif con == ">=":
@@ -147,7 +148,6 @@ class Listener(TinyListener):
     def enterId_list(self, ctx: TinyParser.Id_listContext):
         values = ctx.getText().split(",")
         if self.writeFlag:
-            self.assembly_code.append([])
             for v in values:
                 self.currVarType = self.getTypeByKey(self.scope, v)
                 if self.currVarType == "INT":
@@ -161,11 +161,9 @@ class Listener(TinyListener):
             for v in values:
                 typ = self.getTypeByKey(self.scope, v)
                 if typ == "INT":
-                    line = "sys readi %s" % (v)
+                    self.assembly_code.append(["sys readi %s" % (v)])
                 elif typ == "FLOAT":
-                    line = "sys readf %s" % (v)
-                lineBlock.append(line)
-            self.assembly_code.append(lineBlock)
+                    self.assembly_code.append(["sys readf %s" % (v)])
         if self.writeVar:
             self.assembly_code.append([])
             for v in values:
@@ -189,49 +187,6 @@ class Listener(TinyListener):
         self.currVarType = self.getTypeByKey(self.scope, ct)
         tr = self.push()
         self.assembly_code[-1].append("move %s %s" % (tr, ct))
-
-    # Exit a parse tree produced by TinyParser#assign_expr.
-    def exitAssign_expr(self, ctx: TinyParser.Assign_exprContext):
-        pass
-
-    # Enter a parse tree produced by TinyParser#expr_list.
-    def enterExpr_list(self, ctx: TinyParser.Expr_listContext):
-        pass
-
-    # Exit a parse tree produced by TinyParser#expr_list.
-    def exitExpr_list(self, ctx: TinyParser.Expr_listContext):
-        pass
-
-    # Enter a parse tree produced by TinyParser#expr_list_tail.
-    def enterExpr_list_tail(self, ctx: TinyParser.Expr_list_tailContext):
-        pass
-
-    # Exit a parse tree produced by TinyParser#expr_list_tail.
-    def exitExpr_list_tail(self, ctx: TinyParser.Expr_list_tailContext):
-        pass
-
-    # Enter a parse tree produced by TinyParser#mulop.
-    def enterMulop(self, ctx: TinyParser.MulopContext):
-        opr = ctx.getText()
-        if (opr == '*'):
-            # return mult(ctx)
-            pass
-        elif (opr == '/'):
-            # return divi(ctx)
-            pass
-        pass
-
-    # Exit a parse tree produced by TinyParser#mulop.
-    def exitMulop(self, ctx: TinyParser.MulopContext):
-        pass
-
-    # Enter a parse tree produced by TinyParser#addop.
-    def enterAddop(self, ctx: TinyParser.AddopContext):
-        opr = ctx.getText()
-        if (opr == '+'):
-            pass
-        elif (opr == '-'):
-            pass
 
     # Enter a parse tree produced by TinyParser#write_stmt.
     def enterWrite_stmt(self, ctx: TinyParser.Write_stmtContext):
@@ -261,7 +216,7 @@ class Listener(TinyListener):
             if op == "*":
                 code = "muli %s %s %s" % (rl, rr, rf)
             elif op == "/":
-                code = "muli %s %s %s" % (rl, rr, rf)
+                code = "divi %s %s %s" % (rl, rr, rf)
         elif self.currVarType == "FLOAT":
             if op == "*":
                 code = "mulr %s %s %s" % (rl, rr, rf)
@@ -303,4 +258,5 @@ class Listener(TinyListener):
                 elif op == '-':
                     opper = 'subr'
             self.assembly_code[-1].append("%s %s %s %s" % (opper, rl, rr, result))
+
 
